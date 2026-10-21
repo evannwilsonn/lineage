@@ -1,0 +1,1341 @@
+{
+  "baselines" : [
+    {
+      "name" : "Guess the most common breed",
+      "score" : {
+        "n" : 8580,
+        "top1" : 0.006060606060606061,
+        "top5" : 0.006060606060606061
+      }
+    },
+    {
+      "name" : "ImageNet classifier's own dog classes, no training",
+      "score" : {
+        "logLoss" : 0.29259919741210616,
+        "n" : 8580,
+        "top1" : 0.924941724941725,
+        "top5" : 0.9979020979020979
+      }
+    },
+    {
+      "name" : "Nearest breed average, cosine",
+      "score" : {
+        "n" : 8580,
+        "top1" : 0.8986013986013986,
+        "top5" : 0.8986013986013986
+      }
+    },
+    {
+      "name" : "k nearest photos, k = 20, cosine",
+      "score" : {
+        "n" : 8580,
+        "top1" : 0.8961538461538462,
+        "top5" : 0.9865967365967366
+      }
+    }
+  ],
+  "breeds" : [
+    {
+      "breed" : "Chihuahua",
+      "folder" : "n02085620-Chihuahua",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Papillon",
+      "n" : 52,
+      "top1" : 0.9038461538461539,
+      "top5" : 0.9615384615384616
+    },
+    {
+      "breed" : "Japanese chin",
+      "folder" : "n02085782-Japanese_spaniel",
+      "mostConfusedCount" : 3,
+      "mostConfusedWith" : "Blenheim spaniel",
+      "n" : 85,
+      "top1" : 0.8941176470588236,
+      "top5" : 0.9882352941176471
+    },
+    {
+      "breed" : "Maltese",
+      "folder" : "n02085936-Maltese_dog",
+      "mostConfusedCount" : 4,
+      "mostConfusedWith" : "West Highland white terrier",
+      "n" : 152,
+      "top1" : 0.9342105263157895,
+      "top5" : 0.993421052631579
+    },
+    {
+      "breed" : "Pekinese",
+      "folder" : "n02086079-Pekinese",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Shih Tzu",
+      "n" : 49,
+      "top1" : 0.8775510204081632,
+      "top5" : 1
+    },
+    {
+      "breed" : "Shih Tzu",
+      "folder" : "n02086240-Shih-Tzu",
+      "mostConfusedCount" : 10,
+      "mostConfusedWith" : "Lhasa apso",
+      "n" : 114,
+      "top1" : 0.8421052631578947,
+      "top5" : 1
+    },
+    {
+      "breed" : "Blenheim spaniel",
+      "folder" : "n02086646-Blenheim_spaniel",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Japanese chin",
+      "n" : 88,
+      "top1" : 0.9772727272727273,
+      "top5" : 1
+    },
+    {
+      "breed" : "Papillon",
+      "folder" : "n02086910-papillon",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Japanese chin",
+      "n" : 96,
+      "top1" : 0.9791666666666666,
+      "top5" : 1
+    },
+    {
+      "breed" : "Toy terrier",
+      "folder" : "n02087046-toy_terrier",
+      "mostConfusedCount" : 5,
+      "mostConfusedWith" : "Miniature pinscher",
+      "n" : 72,
+      "top1" : 0.8472222222222222,
+      "top5" : 1
+    },
+    {
+      "breed" : "Rhodesian ridgeback",
+      "folder" : "n02087394-Rhodesian_ridgeback",
+      "mostConfusedCount" : 4,
+      "mostConfusedWith" : "Redbone coonhound",
+      "n" : 72,
+      "top1" : 0.8333333333333334,
+      "top5" : 1
+    },
+    {
+      "breed" : "Afghan hound",
+      "folder" : "n02088094-Afghan_hound",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Borzoi",
+      "n" : 139,
+      "top1" : 0.9928057553956835,
+      "top5" : 1
+    },
+    {
+      "breed" : "Basset hound",
+      "folder" : "n02088238-basset",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Beagle",
+      "n" : 75,
+      "top1" : 0.9333333333333333,
+      "top5" : 1
+    },
+    {
+      "breed" : "Beagle",
+      "folder" : "n02088364-beagle",
+      "mostConfusedCount" : 5,
+      "mostConfusedWith" : "Walker hound",
+      "n" : 95,
+      "top1" : 0.9157894736842105,
+      "top5" : 1
+    },
+    {
+      "breed" : "Bloodhound",
+      "folder" : "n02088466-bloodhound",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Black-and-tan coonhound",
+      "n" : 87,
+      "top1" : 0.9195402298850575,
+      "top5" : 0.9885057471264368
+    },
+    {
+      "breed" : "Bluetick coonhound",
+      "folder" : "n02088632-bluetick",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Walker hound",
+      "n" : 71,
+      "top1" : 0.9436619718309859,
+      "top5" : 0.9859154929577465
+    },
+    {
+      "breed" : "Black-and-tan coonhound",
+      "folder" : "n02089078-black-and-tan_coonhound",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Doberman",
+      "n" : 59,
+      "top1" : 0.8983050847457628,
+      "top5" : 1
+    },
+    {
+      "breed" : "Walker hound",
+      "folder" : "n02089867-Walker_hound",
+      "mostConfusedCount" : 5,
+      "mostConfusedWith" : "English foxhound",
+      "n" : 53,
+      "top1" : 0.8113207547169812,
+      "top5" : 1
+    },
+    {
+      "breed" : "English foxhound",
+      "folder" : "n02089973-English_foxhound",
+      "mostConfusedCount" : 8,
+      "mostConfusedWith" : "Walker hound",
+      "n" : 57,
+      "top1" : 0.7719298245614035,
+      "top5" : 1
+    },
+    {
+      "breed" : "Redbone coonhound",
+      "folder" : "n02090379-redbone",
+      "mostConfusedCount" : 4,
+      "mostConfusedWith" : "Rhodesian ridgeback",
+      "n" : 48,
+      "top1" : 0.875,
+      "top5" : 1
+    },
+    {
+      "breed" : "Borzoi",
+      "folder" : "n02090622-borzoi",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Scottish deerhound",
+      "n" : 51,
+      "top1" : 0.9411764705882353,
+      "top5" : 1
+    },
+    {
+      "breed" : "Irish wolfhound",
+      "folder" : "n02090721-Irish_wolfhound",
+      "mostConfusedCount" : 10,
+      "mostConfusedWith" : "Scottish deerhound",
+      "n" : 118,
+      "top1" : 0.8983050847457628,
+      "top5" : 1
+    },
+    {
+      "breed" : "Italian greyhound",
+      "folder" : "n02091032-Italian_greyhound",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Rhodesian ridgeback",
+      "n" : 82,
+      "top1" : 0.9512195121951219,
+      "top5" : 1
+    },
+    {
+      "breed" : "Whippet",
+      "folder" : "n02091134-whippet",
+      "mostConfusedCount" : 4,
+      "mostConfusedWith" : "Italian greyhound",
+      "n" : 87,
+      "top1" : 0.8850574712643678,
+      "top5" : 0.9885057471264368
+    },
+    {
+      "breed" : "Ibizan hound",
+      "folder" : "n02091244-Ibizan_hound",
+      "mostConfusedCount" : 3,
+      "mostConfusedWith" : "Chihuahua",
+      "n" : 88,
+      "top1" : 0.9431818181818182,
+      "top5" : 0.9886363636363636
+    },
+    {
+      "breed" : "Norwegian elkhound",
+      "folder" : "n02091467-Norwegian_elkhound",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Eskimo dog",
+      "n" : 96,
+      "top1" : 0.9791666666666666,
+      "top5" : 1
+    },
+    {
+      "breed" : "Otterhound",
+      "folder" : "n02091635-otterhound",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Airedale terrier",
+      "n" : 51,
+      "top1" : 0.9803921568627451,
+      "top5" : 1
+    },
+    {
+      "breed" : "Saluki",
+      "folder" : "n02091831-Saluki",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Borzoi",
+      "n" : 100,
+      "top1" : 0.98,
+      "top5" : 1
+    },
+    {
+      "breed" : "Scottish deerhound",
+      "folder" : "n02092002-Scottish_deerhound",
+      "mostConfusedCount" : 12,
+      "mostConfusedWith" : "Irish wolfhound",
+      "n" : 132,
+      "top1" : 0.8939393939393939,
+      "top5" : 1
+    },
+    {
+      "breed" : "Weimaraner",
+      "folder" : "n02092339-Weimaraner",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Vizsla",
+      "n" : 60,
+      "top1" : 0.9833333333333333,
+      "top5" : 1
+    },
+    {
+      "breed" : "Staffordshire bull terrier",
+      "folder" : "n02093256-Staffordshire_bullterrier",
+      "mostConfusedCount" : 10,
+      "mostConfusedWith" : "American Staffordshire terrier",
+      "n" : 55,
+      "top1" : 0.7818181818181819,
+      "top5" : 1
+    },
+    {
+      "breed" : "American Staffordshire terrier",
+      "folder" : "n02093428-American_Staffordshire_terrier",
+      "mostConfusedCount" : 9,
+      "mostConfusedWith" : "Staffordshire bull terrier",
+      "n" : 64,
+      "top1" : 0.796875,
+      "top5" : 1
+    },
+    {
+      "breed" : "Bedlington terrier",
+      "folder" : "n02093647-Bedlington_terrier",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Wire-haired fox terrier",
+      "n" : 82,
+      "top1" : 0.975609756097561,
+      "top5" : 1
+    },
+    {
+      "breed" : "Border terrier",
+      "folder" : "n02093754-Border_terrier",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Norfolk terrier",
+      "n" : 72,
+      "top1" : 0.9444444444444444,
+      "top5" : 0.9861111111111112
+    },
+    {
+      "breed" : "Kerry blue terrier",
+      "folder" : "n02093859-Kerry_blue_terrier",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Bouvier des Flandres",
+      "n" : 79,
+      "top1" : 0.9113924050632911,
+      "top5" : 0.9873417721518988
+    },
+    {
+      "breed" : "Irish terrier",
+      "folder" : "n02093991-Irish_terrier",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Border terrier",
+      "n" : 69,
+      "top1" : 0.9710144927536232,
+      "top5" : 1
+    },
+    {
+      "breed" : "Norfolk terrier",
+      "folder" : "n02094114-Norfolk_terrier",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Border terrier",
+      "n" : 72,
+      "top1" : 0.9027777777777778,
+      "top5" : 1
+    },
+    {
+      "breed" : "Norwich terrier",
+      "folder" : "n02094258-Norwich_terrier",
+      "mostConfusedCount" : 5,
+      "mostConfusedWith" : "Norfolk terrier",
+      "n" : 85,
+      "top1" : 0.8235294117647058,
+      "top5" : 0.9764705882352941
+    },
+    {
+      "breed" : "Yorkshire terrier",
+      "folder" : "n02094433-Yorkshire_terrier",
+      "mostConfusedCount" : 6,
+      "mostConfusedWith" : "Silky terrier",
+      "n" : 64,
+      "top1" : 0.859375,
+      "top5" : 1
+    },
+    {
+      "breed" : "Wire-haired fox terrier",
+      "folder" : "n02095314-wire-haired_fox_terrier",
+      "mostConfusedCount" : 4,
+      "mostConfusedWith" : "Airedale terrier",
+      "n" : 57,
+      "top1" : 0.8421052631578947,
+      "top5" : 1
+    },
+    {
+      "breed" : "Lakeland terrier",
+      "folder" : "n02095570-Lakeland_terrier",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Irish terrier",
+      "n" : 97,
+      "top1" : 0.9072164948453608,
+      "top5" : 1
+    },
+    {
+      "breed" : "Sealyham terrier",
+      "folder" : "n02095889-Sealyham_terrier",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Lakeland terrier",
+      "n" : 102,
+      "top1" : 0.9705882352941176,
+      "top5" : 1
+    },
+    {
+      "breed" : "Airedale terrier",
+      "folder" : "n02096051-Airedale",
+      "mostConfusedCount" : 4,
+      "mostConfusedWith" : "Otterhound",
+      "n" : 102,
+      "top1" : 0.9117647058823529,
+      "top5" : 1
+    },
+    {
+      "breed" : "Cairn terrier",
+      "folder" : "n02096177-cairn",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Shih Tzu",
+      "n" : 97,
+      "top1" : 0.9278350515463918,
+      "top5" : 0.9896907216494846
+    },
+    {
+      "breed" : "Australian terrier",
+      "folder" : "n02096294-Australian_terrier",
+      "mostConfusedCount" : 10,
+      "mostConfusedWith" : "Yorkshire terrier",
+      "n" : 96,
+      "top1" : 0.78125,
+      "top5" : 0.9895833333333334
+    },
+    {
+      "breed" : "Dandie Dinmont terrier",
+      "folder" : "n02096437-Dandie_Dinmont",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Wire-haired fox terrier",
+      "n" : 80,
+      "top1" : 0.9625,
+      "top5" : 1
+    },
+    {
+      "breed" : "Boston terrier",
+      "folder" : "n02096585-Boston_bull",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Toy terrier",
+      "n" : 82,
+      "top1" : 0.9390243902439024,
+      "top5" : 1
+    },
+    {
+      "breed" : "Miniature schnauzer",
+      "folder" : "n02097047-miniature_schnauzer",
+      "mostConfusedCount" : 5,
+      "mostConfusedWith" : "Standard schnauzer",
+      "n" : 54,
+      "top1" : 0.8703703703703703,
+      "top5" : 0.9814814814814815
+    },
+    {
+      "breed" : "Giant schnauzer",
+      "folder" : "n02097130-giant_schnauzer",
+      "mostConfusedCount" : 3,
+      "mostConfusedWith" : "Standard schnauzer",
+      "n" : 57,
+      "top1" : 0.8947368421052632,
+      "top5" : 1
+    },
+    {
+      "breed" : "Standard schnauzer",
+      "folder" : "n02097209-standard_schnauzer",
+      "mostConfusedCount" : 4,
+      "mostConfusedWith" : "Miniature schnauzer",
+      "n" : 55,
+      "top1" : 0.8363636363636363,
+      "top5" : 1
+    },
+    {
+      "breed" : "Scottish terrier",
+      "folder" : "n02097298-Scotch_terrier",
+      "mostConfusedCount" : 3,
+      "mostConfusedWith" : "Cairn terrier",
+      "n" : 58,
+      "top1" : 0.8793103448275862,
+      "top5" : 1
+    },
+    {
+      "breed" : "Tibetan terrier",
+      "folder" : "n02097474-Tibetan_terrier",
+      "mostConfusedCount" : 5,
+      "mostConfusedWith" : "Shih Tzu",
+      "n" : 106,
+      "top1" : 0.8301886792452831,
+      "top5" : 0.9811320754716981
+    },
+    {
+      "breed" : "Silky terrier",
+      "folder" : "n02097658-silky_terrier",
+      "mostConfusedCount" : 13,
+      "mostConfusedWith" : "Yorkshire terrier",
+      "n" : 83,
+      "top1" : 0.7469879518072289,
+      "top5" : 1
+    },
+    {
+      "breed" : "Soft-coated wheaten terrier",
+      "folder" : "n02098105-soft-coated_wheaten_terrier",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Shih Tzu",
+      "n" : 56,
+      "top1" : 0.9107142857142857,
+      "top5" : 1
+    },
+    {
+      "breed" : "West Highland white terrier",
+      "folder" : "n02098286-West_Highland_white_terrier",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Maltese",
+      "n" : 69,
+      "top1" : 0.9420289855072463,
+      "top5" : 1
+    },
+    {
+      "breed" : "Lhasa apso",
+      "folder" : "n02098413-Lhasa",
+      "mostConfusedCount" : 10,
+      "mostConfusedWith" : "Shih Tzu",
+      "n" : 86,
+      "top1" : 0.7674418604651163,
+      "top5" : 1
+    },
+    {
+      "breed" : "Flat-coated retriever",
+      "folder" : "n02099267-flat-coated_retriever",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Labrador retriever",
+      "n" : 52,
+      "top1" : 0.9423076923076923,
+      "top5" : 1
+    },
+    {
+      "breed" : "Curly-coated retriever",
+      "folder" : "n02099429-curly-coated_retriever",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Flat-coated retriever",
+      "n" : 51,
+      "top1" : 0.9607843137254902,
+      "top5" : 0.9803921568627451
+    },
+    {
+      "breed" : "Golden retriever",
+      "folder" : "n02099601-golden_retriever",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Cocker spaniel",
+      "n" : 50,
+      "top1" : 0.96,
+      "top5" : 0.98
+    },
+    {
+      "breed" : "Labrador retriever",
+      "folder" : "n02099712-Labrador_retriever",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "German short-haired pointer",
+      "n" : 71,
+      "top1" : 0.8873239436619719,
+      "top5" : 1
+    },
+    {
+      "breed" : "Chesapeake Bay retriever",
+      "folder" : "n02099849-Chesapeake_Bay_retriever",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Bull mastiff",
+      "n" : 67,
+      "top1" : 0.9701492537313433,
+      "top5" : 1
+    },
+    {
+      "breed" : "German short-haired pointer",
+      "folder" : "n02100236-German_short-haired_pointer",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Greater Swiss Mountain dog",
+      "n" : 52,
+      "top1" : 0.9807692307692307,
+      "top5" : 1
+    },
+    {
+      "breed" : "Vizsla",
+      "folder" : "n02100583-vizsla",
+      "mostConfusedCount" : 3,
+      "mostConfusedWith" : "Rhodesian ridgeback",
+      "n" : 54,
+      "top1" : 0.9259259259259259,
+      "top5" : 1
+    },
+    {
+      "breed" : "English setter",
+      "folder" : "n02100735-English_setter",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Gordon setter",
+      "n" : 61,
+      "top1" : 0.9508196721311475,
+      "top5" : 0.9836065573770492
+    },
+    {
+      "breed" : "Irish setter",
+      "folder" : "n02100877-Irish_setter",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Gordon setter",
+      "n" : 55,
+      "top1" : 0.9818181818181818,
+      "top5" : 1
+    },
+    {
+      "breed" : "Gordon setter",
+      "folder" : "n02101006-Gordon_setter",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Appenzeller",
+      "n" : 53,
+      "top1" : 0.9811320754716981,
+      "top5" : 1
+    },
+    {
+      "breed" : "Brittany spaniel",
+      "folder" : "n02101388-Brittany_spaniel",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Welsh springer spaniel",
+      "n" : 52,
+      "top1" : 0.9423076923076923,
+      "top5" : 1
+    },
+    {
+      "breed" : "Clumber spaniel",
+      "folder" : "n02101556-clumber",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Welsh springer spaniel",
+      "n" : 50,
+      "top1" : 0.98,
+      "top5" : 0.98
+    },
+    {
+      "breed" : "English springer spaniel",
+      "folder" : "n02102040-English_springer",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Brittany spaniel",
+      "n" : 59,
+      "top1" : 0.9830508474576272,
+      "top5" : 1
+    },
+    {
+      "breed" : "Welsh springer spaniel",
+      "folder" : "n02102177-Welsh_springer_spaniel",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Brittany spaniel",
+      "n" : 50,
+      "top1" : 0.96,
+      "top5" : 1
+    },
+    {
+      "breed" : "Cocker spaniel",
+      "folder" : "n02102318-cocker_spaniel",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "English setter",
+      "n" : 59,
+      "top1" : 0.9661016949152542,
+      "top5" : 1
+    },
+    {
+      "breed" : "Sussex spaniel",
+      "folder" : "n02102480-Sussex_spaniel",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Clumber spaniel",
+      "n" : 51,
+      "top1" : 0.9411764705882353,
+      "top5" : 1
+    },
+    {
+      "breed" : "Irish water spaniel",
+      "folder" : "n02102973-Irish_water_spaniel",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Cocker spaniel",
+      "n" : 50,
+      "top1" : 0.98,
+      "top5" : 1
+    },
+    {
+      "breed" : "Kuvasz",
+      "folder" : "n02104029-kuvasz",
+      "mostConfusedCount" : 4,
+      "mostConfusedWith" : "Great Pyrenees",
+      "n" : 50,
+      "top1" : 0.9,
+      "top5" : 1
+    },
+    {
+      "breed" : "Schipperke",
+      "folder" : "n02104365-schipperke",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Groenendael",
+      "n" : 54,
+      "top1" : 0.9444444444444444,
+      "top5" : 1
+    },
+    {
+      "breed" : "Groenendael",
+      "folder" : "n02105056-groenendael",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Schipperke",
+      "n" : 50,
+      "top1" : 0.96,
+      "top5" : 1
+    },
+    {
+      "breed" : "Malinois",
+      "folder" : "n02105162-malinois",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "German shepherd",
+      "n" : 50,
+      "top1" : 0.98,
+      "top5" : 1
+    },
+    {
+      "breed" : "Briard",
+      "folder" : "n02105251-briard",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Otterhound",
+      "n" : 52,
+      "top1" : 0.9615384615384616,
+      "top5" : 1
+    },
+    {
+      "breed" : "Australian kelpie",
+      "folder" : "n02105412-kelpie",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Appenzeller",
+      "n" : 53,
+      "top1" : 0.8679245283018868,
+      "top5" : 0.9811320754716981
+    },
+    {
+      "breed" : "Komondor",
+      "folder" : "n02105505-komondor",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Old English sheepdog",
+      "n" : 54,
+      "top1" : 0.9814814814814815,
+      "top5" : 1
+    },
+    {
+      "breed" : "Old English sheepdog",
+      "folder" : "n02105641-Old_English_sheepdog",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Tibetan terrier",
+      "n" : 69,
+      "top1" : 0.9565217391304348,
+      "top5" : 1
+    },
+    {
+      "breed" : "Shetland sheepdog",
+      "folder" : "n02105855-Shetland_sheepdog",
+      "mostConfusedCount" : 5,
+      "mostConfusedWith" : "Collie",
+      "n" : 57,
+      "top1" : 0.8947368421052632,
+      "top5" : 1
+    },
+    {
+      "breed" : "Collie",
+      "folder" : "n02106030-collie",
+      "mostConfusedCount" : 12,
+      "mostConfusedWith" : "Border collie",
+      "n" : 53,
+      "top1" : 0.6792452830188679,
+      "top5" : 1
+    },
+    {
+      "breed" : "Border collie",
+      "folder" : "n02106166-Border_collie",
+      "mostConfusedCount" : 6,
+      "mostConfusedWith" : "Collie",
+      "n" : 50,
+      "top1" : 0.82,
+      "top5" : 1
+    },
+    {
+      "breed" : "Bouvier des Flandres",
+      "folder" : "n02106382-Bouvier_des_Flandres",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Briard",
+      "n" : 50,
+      "top1" : 0.96,
+      "top5" : 1
+    },
+    {
+      "breed" : "Rottweiler",
+      "folder" : "n02106550-Rottweiler",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Black-and-tan coonhound",
+      "n" : 52,
+      "top1" : 0.9038461538461539,
+      "top5" : 1
+    },
+    {
+      "breed" : "German shepherd",
+      "folder" : "n02106662-German_shepherd",
+      "mostConfusedCount" : 4,
+      "mostConfusedWith" : "Australian kelpie",
+      "n" : 52,
+      "top1" : 0.8269230769230769,
+      "top5" : 0.9615384615384616
+    },
+    {
+      "breed" : "Doberman",
+      "folder" : "n02107142-Doberman",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Gordon setter",
+      "n" : 50,
+      "top1" : 0.94,
+      "top5" : 1
+    },
+    {
+      "breed" : "Miniature pinscher",
+      "folder" : "n02107312-miniature_pinscher",
+      "mostConfusedCount" : 3,
+      "mostConfusedWith" : "Chihuahua",
+      "n" : 84,
+      "top1" : 0.9166666666666666,
+      "top5" : 1
+    },
+    {
+      "breed" : "Greater Swiss Mountain dog",
+      "folder" : "n02107574-Greater_Swiss_Mountain_dog",
+      "mostConfusedCount" : 5,
+      "mostConfusedWith" : "Entlebucher",
+      "n" : 68,
+      "top1" : 0.8970588235294118,
+      "top5" : 1
+    },
+    {
+      "breed" : "Bernese mountain dog",
+      "folder" : "n02107683-Bernese_mountain_dog",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Appenzeller",
+      "n" : 118,
+      "top1" : 0.9661016949152542,
+      "top5" : 1
+    },
+    {
+      "breed" : "Appenzeller",
+      "folder" : "n02107908-Appenzeller",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Australian kelpie",
+      "n" : 51,
+      "top1" : 0.9019607843137255,
+      "top5" : 1
+    },
+    {
+      "breed" : "Entlebucher",
+      "folder" : "n02108000-EntleBucher",
+      "mostConfusedCount" : 11,
+      "mostConfusedWith" : "Appenzeller",
+      "n" : 102,
+      "top1" : 0.8529411764705882,
+      "top5" : 0.9901960784313726
+    },
+    {
+      "breed" : "Boxer",
+      "folder" : "n02108089-boxer",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "American Staffordshire terrier",
+      "n" : 51,
+      "top1" : 0.9215686274509803,
+      "top5" : 0.9803921568627451
+    },
+    {
+      "breed" : "Bull mastiff",
+      "folder" : "n02108422-bull_mastiff",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "American Staffordshire terrier",
+      "n" : 56,
+      "top1" : 0.8928571428571429,
+      "top5" : 1
+    },
+    {
+      "breed" : "Tibetan mastiff",
+      "folder" : "n02108551-Tibetan_mastiff",
+      "mostConfusedCount" : 3,
+      "mostConfusedWith" : "Newfoundland",
+      "n" : 52,
+      "top1" : 0.9423076923076923,
+      "top5" : 1
+    },
+    {
+      "breed" : "French bulldog",
+      "folder" : "n02108915-French_bulldog",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Boston terrier",
+      "n" : 59,
+      "top1" : 0.9491525423728814,
+      "top5" : 1
+    },
+    {
+      "breed" : "Great Dane",
+      "folder" : "n02109047-Great_Dane",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Whippet",
+      "n" : 56,
+      "top1" : 0.9107142857142857,
+      "top5" : 0.9821428571428571
+    },
+    {
+      "breed" : "Saint Bernard",
+      "folder" : "n02109525-Saint_Bernard",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Bernese mountain dog",
+      "n" : 70,
+      "top1" : 0.9857142857142858,
+      "top5" : 1
+    },
+    {
+      "breed" : "Eskimo dog",
+      "folder" : "n02109961-Eskimo_dog",
+      "mostConfusedCount" : 14,
+      "mostConfusedWith" : "Siberian husky",
+      "n" : 50,
+      "top1" : 0.58,
+      "top5" : 0.98
+    },
+    {
+      "breed" : "Alaskan malamute",
+      "folder" : "n02110063-malamute",
+      "mostConfusedCount" : 12,
+      "mostConfusedWith" : "Eskimo dog",
+      "n" : 78,
+      "top1" : 0.7307692307692307,
+      "top5" : 1
+    },
+    {
+      "breed" : "Siberian husky",
+      "folder" : "n02110185-Siberian_husky",
+      "mostConfusedCount" : 21,
+      "mostConfusedWith" : "Eskimo dog",
+      "n" : 92,
+      "top1" : 0.7065217391304348,
+      "top5" : 1
+    },
+    {
+      "breed" : "Affenpinscher",
+      "folder" : "n02110627-affenpinscher",
+      "mostConfusedCount" : 0,
+      "n" : 50,
+      "top1" : 1,
+      "top5" : 1
+    },
+    {
+      "breed" : "Basenji",
+      "folder" : "n02110806-basenji",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "English foxhound",
+      "n" : 109,
+      "top1" : 0.944954128440367,
+      "top5" : 0.981651376146789
+    },
+    {
+      "breed" : "Pug",
+      "folder" : "n02110958-pug",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Staffordshire bull terrier",
+      "n" : 100,
+      "top1" : 0.96,
+      "top5" : 1
+    },
+    {
+      "breed" : "Leonberger",
+      "folder" : "n02111129-Leonberg",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Tibetan mastiff",
+      "n" : 110,
+      "top1" : 0.990909090909091,
+      "top5" : 1
+    },
+    {
+      "breed" : "Newfoundland",
+      "folder" : "n02111277-Newfoundland",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Giant schnauzer",
+      "n" : 95,
+      "top1" : 0.9263157894736842,
+      "top5" : 1
+    },
+    {
+      "breed" : "Great Pyrenees",
+      "folder" : "n02111500-Great_Pyrenees",
+      "mostConfusedCount" : 5,
+      "mostConfusedWith" : "Kuvasz",
+      "n" : 113,
+      "top1" : 0.9026548672566371,
+      "top5" : 1
+    },
+    {
+      "breed" : "Samoyed",
+      "folder" : "n02111889-Samoyed",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Great Pyrenees",
+      "n" : 118,
+      "top1" : 0.9830508474576272,
+      "top5" : 1
+    },
+    {
+      "breed" : "Pomeranian",
+      "folder" : "n02112018-Pomeranian",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Pekinese",
+      "n" : 119,
+      "top1" : 0.957983193277311,
+      "top5" : 1
+    },
+    {
+      "breed" : "Chow chow",
+      "folder" : "n02112137-chow",
+      "mostConfusedCount" : 0,
+      "n" : 96,
+      "top1" : 1,
+      "top5" : 1
+    },
+    {
+      "breed" : "Keeshond",
+      "folder" : "n02112350-keeshond",
+      "mostConfusedCount" : 0,
+      "n" : 58,
+      "top1" : 1,
+      "top5" : 1
+    },
+    {
+      "breed" : "Brabançon griffon",
+      "folder" : "n02112706-Brabancon_griffon",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Pekinese",
+      "n" : 53,
+      "top1" : 0.9622641509433962,
+      "top5" : 1
+    },
+    {
+      "breed" : "Pembroke Welsh corgi",
+      "folder" : "n02113023-Pembroke",
+      "mostConfusedCount" : 9,
+      "mostConfusedWith" : "Cardigan Welsh corgi",
+      "n" : 81,
+      "top1" : 0.8765432098765432,
+      "top5" : 0.9876543209876543
+    },
+    {
+      "breed" : "Cardigan Welsh corgi",
+      "folder" : "n02113186-Cardigan",
+      "mostConfusedCount" : 6,
+      "mostConfusedWith" : "Pembroke Welsh corgi",
+      "n" : 55,
+      "top1" : 0.8727272727272727,
+      "top5" : 1
+    },
+    {
+      "breed" : "Toy poodle",
+      "folder" : "n02113624-toy_poodle",
+      "mostConfusedCount" : 8,
+      "mostConfusedWith" : "Miniature poodle",
+      "n" : 51,
+      "top1" : 0.803921568627451,
+      "top5" : 1
+    },
+    {
+      "breed" : "Miniature poodle",
+      "folder" : "n02113712-miniature_poodle",
+      "mostConfusedCount" : 11,
+      "mostConfusedWith" : "Toy poodle",
+      "n" : 55,
+      "top1" : 0.6545454545454545,
+      "top5" : 0.9818181818181818
+    },
+    {
+      "breed" : "Standard poodle",
+      "folder" : "n02113799-standard_poodle",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Bedlington terrier",
+      "n" : 59,
+      "top1" : 0.9491525423728814,
+      "top5" : 1
+    },
+    {
+      "breed" : "Mexican hairless",
+      "folder" : "n02113978-Mexican_hairless",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Chihuahua",
+      "n" : 55,
+      "top1" : 0.9272727272727272,
+      "top5" : 1
+    },
+    {
+      "breed" : "Dingo",
+      "folder" : "n02115641-dingo",
+      "mostConfusedCount" : 2,
+      "mostConfusedWith" : "Dhole",
+      "n" : 56,
+      "top1" : 0.8928571428571429,
+      "top5" : 0.9821428571428571
+    },
+    {
+      "breed" : "Dhole",
+      "folder" : "n02115913-dhole",
+      "mostConfusedCount" : 1,
+      "mostConfusedWith" : "Dingo",
+      "n" : 50,
+      "top1" : 0.98,
+      "top5" : 1
+    },
+    {
+      "breed" : "African hunting dog",
+      "folder" : "n02116738-African_hunting_dog",
+      "mostConfusedCount" : 0,
+      "n" : 69,
+      "top1" : 1,
+      "top5" : 1
+    }
+  ],
+  "chosen" : {
+    "config" : {
+      "batch" : 128,
+      "dropout" : 0,
+      "hidden" : 0,
+      "learningRate" : 0.0001,
+      "maxEpochs" : 200,
+      "norm" : "none",
+      "patience" : 8,
+      "seed" : 7,
+      "weightDecay" : 0.001
+    },
+    "epochs" : 58,
+    "testViews" : [
+      "crop"
+    ],
+    "trainViews" : [
+      "crop"
+    ]
+  },
+  "course" : [
+    {
+      "name" : "Course notebook model_1: EfficientNetV2-B0 + Dense(120), all 12,000 photos, 5 epochs",
+      "note" : "its own report; the test photos were also its validation data",
+      "score" : {
+        "logLoss" : 0.3753,
+        "n" : 8580,
+        "top1" : 0.8767,
+        "top5" : 0
+      }
+    },
+    {
+      "name" : "Course notebook model_0: the same on 10% of the training photos",
+      "note" : "its own report",
+      "score" : {
+        "logLoss" : 0.8792,
+        "n" : 8580,
+        "top1" : 0.8107,
+        "top5" : 0
+      }
+    }
+  ],
+  "final" : {
+    "logLoss" : 0.2962002995538978,
+    "n" : 8580,
+    "top1" : 0.9108391608391608,
+    "top5" : 0.9961538461538462
+  },
+  "imagenetOnTrain" : {
+    "logLoss" : 0.308572807629372,
+    "n" : 12000,
+    "top1" : 0.9201666666666667,
+    "top5" : 0.9960833333333333
+  },
+  "lookalikes" : [
+    {
+      "a" : "Eskimo dog",
+      "aAsB" : 14,
+      "b" : "Siberian husky",
+      "bAsA" : 21,
+      "nA" : 50,
+      "nB" : 92
+    },
+    {
+      "a" : "Irish wolfhound",
+      "aAsB" : 10,
+      "b" : "Scottish deerhound",
+      "bAsA" : 12,
+      "nA" : 118,
+      "nB" : 132
+    },
+    {
+      "a" : "Shih Tzu",
+      "aAsB" : 10,
+      "b" : "Lhasa apso",
+      "bAsA" : 10,
+      "nA" : 114,
+      "nB" : 86
+    },
+    {
+      "a" : "Staffordshire bull terrier",
+      "aAsB" : 10,
+      "b" : "American Staffordshire terrier",
+      "bAsA" : 9,
+      "nA" : 55,
+      "nB" : 64
+    },
+    {
+      "a" : "Toy poodle",
+      "aAsB" : 8,
+      "b" : "Miniature poodle",
+      "bAsA" : 11,
+      "nA" : 51,
+      "nB" : 55
+    },
+    {
+      "a" : "Yorkshire terrier",
+      "aAsB" : 6,
+      "b" : "Silky terrier",
+      "bAsA" : 13,
+      "nA" : 64,
+      "nB" : 83
+    },
+    {
+      "a" : "Collie",
+      "aAsB" : 12,
+      "b" : "Border collie",
+      "bAsA" : 6,
+      "nA" : 53,
+      "nB" : 50
+    },
+    {
+      "a" : "Pembroke Welsh corgi",
+      "aAsB" : 9,
+      "b" : "Cardigan Welsh corgi",
+      "bAsA" : 6,
+      "nA" : 81,
+      "nB" : 55
+    },
+    {
+      "a" : "Eskimo dog",
+      "aAsB" : 2,
+      "b" : "Alaskan malamute",
+      "bAsA" : 12,
+      "nA" : 50,
+      "nB" : 78
+    },
+    {
+      "a" : "Walker hound",
+      "aAsB" : 5,
+      "b" : "English foxhound",
+      "bAsA" : 8,
+      "nA" : 53,
+      "nB" : 57
+    },
+    {
+      "a" : "Appenzeller",
+      "aAsB" : 1,
+      "b" : "Entlebucher",
+      "bAsA" : 11,
+      "nA" : 51,
+      "nB" : 102
+    },
+    {
+      "a" : "Australian terrier",
+      "aAsB" : 4,
+      "b" : "Silky terrier",
+      "bAsA" : 8,
+      "nA" : 96,
+      "nB" : 83
+    },
+    {
+      "a" : "Alaskan malamute",
+      "aAsB" : 8,
+      "b" : "Siberian husky",
+      "bAsA" : 3,
+      "nA" : 78,
+      "nB" : 92
+    },
+    {
+      "a" : "Yorkshire terrier",
+      "aAsB" : 0,
+      "b" : "Australian terrier",
+      "bAsA" : 10,
+      "nA" : 64,
+      "nB" : 96
+    },
+    {
+      "a" : "Kuvasz",
+      "aAsB" : 4,
+      "b" : "Great Pyrenees",
+      "bAsA" : 5,
+      "nA" : 50,
+      "nB" : 113
+    },
+    {
+      "a" : "Miniature schnauzer",
+      "aAsB" : 5,
+      "b" : "Standard schnauzer",
+      "bAsA" : 4,
+      "nA" : 54,
+      "nB" : 55
+    },
+    {
+      "a" : "Shih Tzu",
+      "aAsB" : 4,
+      "b" : "Tibetan terrier",
+      "bAsA" : 5,
+      "nA" : 114,
+      "nB" : 106
+    },
+    {
+      "a" : "Greater Swiss Mountain dog",
+      "aAsB" : 5,
+      "b" : "Entlebucher",
+      "bAsA" : 3,
+      "nA" : 68,
+      "nB" : 102
+    },
+    {
+      "a" : "Rhodesian ridgeback",
+      "aAsB" : 4,
+      "b" : "Redbone coonhound",
+      "bAsA" : 4,
+      "nA" : 72,
+      "nB" : 48
+    },
+    {
+      "a" : "Beagle",
+      "aAsB" : 5,
+      "b" : "Walker hound",
+      "bAsA" : 2,
+      "nA" : 95,
+      "nB" : 53
+    }
+  ],
+  "singleView" : {
+    "logLoss" : 0.2962002995538978,
+    "n" : 8580,
+    "top1" : 0.9108391608391608,
+    "top5" : 0.9961538461538462
+  },
+  "testPhotos" : 8580,
+  "trainPhotos" : 12000,
+  "trainRows" : 12000,
+  "trainingSeconds" : 21.30754029750824
+}

@@ -1,0 +1,1355 @@
+{
+  "baselines" : [
+    {
+      "name" : "Guess the most common breed",
+      "score" : {
+        "n" : 1800,
+        "top1" : 0.008333333333333333,
+        "top5" : 0.008333333333333333
+      }
+    },
+    {
+      "name" : "ImageNet classifier's own dog classes, no training (squash)",
+      "score" : {
+        "logLoss" : 0.35161302851923376,
+        "n" : 1800,
+        "top1" : 0.9033333333333333,
+        "top5" : 0.9961111111111111
+      }
+    },
+    {
+      "name" : "Nearest breed average, cosine (squash)",
+      "score" : {
+        "n" : 1800,
+        "top1" : 0.86,
+        "top5" : 0.86
+      }
+    },
+    {
+      "name" : "k nearest photos, k = 1, cosine (squash)",
+      "score" : {
+        "n" : 1800,
+        "top1" : 0.8333333333333334,
+        "top5" : 0.8333333333333334
+      }
+    },
+    {
+      "name" : "k nearest photos, k = 5, cosine (squash)",
+      "score" : {
+        "n" : 1800,
+        "top1" : 0.8616666666666667,
+        "top5" : 0.9494444444444444
+      }
+    },
+    {
+      "name" : "k nearest photos, k = 10, cosine (squash)",
+      "score" : {
+        "n" : 1800,
+        "top1" : 0.8605555555555555,
+        "top5" : 0.9688888888888889
+      }
+    },
+    {
+      "name" : "k nearest photos, k = 20, cosine (squash)",
+      "score" : {
+        "n" : 1800,
+        "top1" : 0.8622222222222222,
+        "top5" : 0.9811111111111112
+      }
+    },
+    {
+      "name" : "ImageNet classifier's own dog classes, no training (crop)",
+      "score" : {
+        "logLoss" : 0.2997466357641449,
+        "n" : 1800,
+        "top1" : 0.9183333333333333,
+        "top5" : 0.9966666666666667
+      }
+    },
+    {
+      "name" : "Nearest breed average, cosine (crop)",
+      "score" : {
+        "n" : 1800,
+        "top1" : 0.8888888888888888,
+        "top5" : 0.8888888888888888
+      }
+    },
+    {
+      "name" : "k nearest photos, k = 1, cosine (crop)",
+      "score" : {
+        "n" : 1800,
+        "top1" : 0.855,
+        "top5" : 0.855
+      }
+    },
+    {
+      "name" : "k nearest photos, k = 5, cosine (crop)",
+      "score" : {
+        "n" : 1800,
+        "top1" : 0.8838888888888888,
+        "top5" : 0.9605555555555556
+      }
+    },
+    {
+      "name" : "k nearest photos, k = 10, cosine (crop)",
+      "score" : {
+        "n" : 1800,
+        "top1" : 0.8811111111111111,
+        "top5" : 0.9766666666666667
+      }
+    },
+    {
+      "name" : "k nearest photos, k = 20, cosine (crop)",
+      "score" : {
+        "n" : 1800,
+        "top1" : 0.8888888888888888,
+        "top5" : 0.9861111111111112
+      }
+    }
+  ],
+  "chosen" : {
+    "config" : {
+      "batch" : 128,
+      "dropout" : 0,
+      "hidden" : 0,
+      "learningRate" : 0.0001,
+      "maxEpochs" : 200,
+      "norm" : "none",
+      "patience" : 8,
+      "seed" : 7,
+      "weightDecay" : 0.001
+    },
+    "epochs" : 58,
+    "testViews" : [
+      "crop"
+    ],
+    "trainViews" : [
+      "crop"
+    ]
+  },
+  "fitPhotos" : 10200,
+  "runs" : [
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 58,
+      "seconds" : 21.77508842945099,
+      "stage" : "scaling",
+      "testViews" : [
+        "squash"
+      ],
+      "trainViews" : [
+        "squash"
+      ],
+      "val" : {
+        "logLoss" : 0.35769717569037707,
+        "n" : 1800,
+        "top1" : 0.8822222222222222,
+        "top5" : 0.9933333333333333
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0003,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 20,
+      "seconds" : 9.53050422668457,
+      "stage" : "scaling",
+      "testViews" : [
+        "squash"
+      ],
+      "trainViews" : [
+        "squash"
+      ],
+      "val" : {
+        "logLoss" : 0.35882911990828437,
+        "n" : 1800,
+        "top1" : 0.8816666666666667,
+        "top5" : 0.9944444444444445
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 8,
+      "seconds" : 5.488677501678467,
+      "stage" : "scaling",
+      "testViews" : [
+        "squash"
+      ],
+      "trainViews" : [
+        "squash"
+      ],
+      "val" : {
+        "logLoss" : 0.366566476391876,
+        "n" : 1800,
+        "top1" : 0.8788888888888889,
+        "top5" : 0.9938888888888889
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 30,
+      "seconds" : 13.939113855361938,
+      "stage" : "scaling",
+      "testViews" : [
+        "squash"
+      ],
+      "trainViews" : [
+        "squash"
+      ],
+      "val" : {
+        "logLoss" : 0.36457220581892885,
+        "n" : 1800,
+        "top1" : 0.875,
+        "top5" : 0.9944444444444445
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0003,
+        "maxEpochs" : 200,
+        "norm" : "standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 8,
+      "seconds" : 5.542801856994629,
+      "stage" : "scaling",
+      "testViews" : [
+        "squash"
+      ],
+      "trainViews" : [
+        "squash"
+      ],
+      "val" : {
+        "logLoss" : 0.36667836336223003,
+        "n" : 1800,
+        "top1" : 0.8766666666666667,
+        "top5" : 0.995
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.001,
+        "maxEpochs" : 200,
+        "norm" : "standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 3,
+      "seconds" : 3.7138214111328125,
+      "stage" : "scaling",
+      "testViews" : [
+        "squash"
+      ],
+      "trainViews" : [
+        "squash"
+      ],
+      "val" : {
+        "logLoss" : 0.37835610098565875,
+        "n" : 1800,
+        "top1" : 0.8733333333333333,
+        "top5" : 0.9938888888888889
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "l2standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 33,
+      "seconds" : 13.515365839004517,
+      "stage" : "scaling",
+      "testViews" : [
+        "squash"
+      ],
+      "trainViews" : [
+        "squash"
+      ],
+      "val" : {
+        "logLoss" : 0.370085253274297,
+        "n" : 1800,
+        "top1" : 0.88,
+        "top5" : 0.9927777777777778
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0003,
+        "maxEpochs" : 200,
+        "norm" : "l2standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 11,
+      "seconds" : 6.315350890159607,
+      "stage" : "scaling",
+      "testViews" : [
+        "squash"
+      ],
+      "trainViews" : [
+        "squash"
+      ],
+      "val" : {
+        "logLoss" : 0.37283512363384325,
+        "n" : 1800,
+        "top1" : 0.8777777777777778,
+        "top5" : 0.9933333333333333
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.001,
+        "maxEpochs" : 200,
+        "norm" : "l2standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 3,
+      "seconds" : 3.8500373363494873,
+      "stage" : "scaling",
+      "testViews" : [
+        "squash"
+      ],
+      "trainViews" : [
+        "squash"
+      ],
+      "val" : {
+        "logLoss" : 0.38219651974331903,
+        "n" : 1800,
+        "top1" : 0.8783333333333333,
+        "top5" : 0.9933333333333333
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 58,
+      "seconds" : 21.916606545448303,
+      "stage" : "scaling",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.29386194169327307,
+        "n" : 1800,
+        "top1" : 0.9055555555555556,
+        "top5" : 0.9933333333333333
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0003,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 25,
+      "seconds" : 11.07113242149353,
+      "stage" : "scaling",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.295759665740138,
+        "n" : 1800,
+        "top1" : 0.9044444444444445,
+        "top5" : 0.9933333333333333
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 9,
+      "seconds" : 5.711604595184326,
+      "stage" : "scaling",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.3032478561560736,
+        "n" : 1800,
+        "top1" : 0.9,
+        "top5" : 0.9938888888888889
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 32,
+      "seconds" : 13.110819697380066,
+      "stage" : "scaling",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.3010170642243985,
+        "n" : 1800,
+        "top1" : 0.9005555555555556,
+        "top5" : 0.9927777777777778
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0003,
+        "maxEpochs" : 200,
+        "norm" : "standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 13,
+      "seconds" : 7.242769956588745,
+      "stage" : "scaling",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.3028986221519672,
+        "n" : 1800,
+        "top1" : 0.9011111111111111,
+        "top5" : 0.9927777777777778
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.001,
+        "maxEpochs" : 200,
+        "norm" : "standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 3,
+      "seconds" : 3.6223894357681274,
+      "stage" : "scaling",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.3160679118659792,
+        "n" : 1800,
+        "top1" : 0.8966666666666666,
+        "top5" : 0.9938888888888889
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "l2standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 32,
+      "seconds" : 12.834702968597412,
+      "stage" : "scaling",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.30781813707770367,
+        "n" : 1800,
+        "top1" : 0.9005555555555556,
+        "top5" : 0.9927777777777778
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0003,
+        "maxEpochs" : 200,
+        "norm" : "l2standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 13,
+      "seconds" : 7.47332239151001,
+      "stage" : "scaling",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.30907789751221687,
+        "n" : 1800,
+        "top1" : 0.8988888888888888,
+        "top5" : 0.9927777777777778
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.001,
+        "maxEpochs" : 200,
+        "norm" : "l2standardize",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.0001
+      },
+      "epochs" : 3,
+      "seconds" : 3.571043610572815,
+      "stage" : "scaling",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.32108296088246774,
+        "n" : 1800,
+        "top1" : 0.8977777777777778,
+        "top5" : 0.9938888888888889
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0
+      },
+      "epochs" : 58,
+      "seconds" : 21.378374576568604,
+      "stage" : "decay",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.29340692219303427,
+        "n" : 1800,
+        "top1" : 0.905,
+        "top5" : 0.9933333333333333
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.001
+      },
+      "epochs" : 58,
+      "log" : [
+        {
+          "epoch" : 1,
+          "trainLoss" : 4.0548762589677105,
+          "valAccuracy" : 0.8061111111111111,
+          "valLoss" : 3.3005724517245167
+        },
+        {
+          "epoch" : 2,
+          "trainLoss" : 2.6758439538555097,
+          "valAccuracy" : 0.8538888888888889,
+          "valLoss" : 2.1265822413924367
+        },
+        {
+          "epoch" : 3,
+          "trainLoss" : 1.6995439625223845,
+          "valAccuracy" : 0.8772222222222222,
+          "valLoss" : 1.3892515079937109
+        },
+        {
+          "epoch" : 4,
+          "trainLoss" : 1.1385432843734014,
+          "valAccuracy" : 0.8833333333333333,
+          "valLoss" : 0.9968336921101539
+        },
+        {
+          "epoch" : 5,
+          "trainLoss" : 0.8418669049319875,
+          "valAccuracy" : 0.8866666666666667,
+          "valLoss" : 0.7863277959248048
+        },
+        {
+          "epoch" : 6,
+          "trainLoss" : 0.6760244378909102,
+          "valAccuracy" : 0.8888888888888888,
+          "valLoss" : 0.6629338354046143
+        },
+        {
+          "epoch" : 7,
+          "trainLoss" : 0.5738687692392245,
+          "valAccuracy" : 0.8938888888888888,
+          "valLoss" : 0.5850210251273206
+        },
+        {
+          "epoch" : 8,
+          "trainLoss" : 0.504944137358935,
+          "valAccuracy" : 0.8955555555555555,
+          "valLoss" : 0.5306271007826676
+        },
+        {
+          "epoch" : 9,
+          "trainLoss" : 0.4553165761827616,
+          "valAccuracy" : 0.8944444444444445,
+          "valLoss" : 0.4920458501248047
+        },
+        {
+          "epoch" : 10,
+          "trainLoss" : 0.41795454939585647,
+          "valAccuracy" : 0.8972222222222223,
+          "valLoss" : 0.4621514012252929
+        },
+        {
+          "epoch" : 11,
+          "trainLoss" : 0.3881225124432517,
+          "valAccuracy" : 0.8961111111111111,
+          "valLoss" : 0.43908849367409947
+        },
+        {
+          "epoch" : 12,
+          "trainLoss" : 0.36400362293716976,
+          "valAccuracy" : 0.9005555555555556,
+          "valLoss" : 0.4206164268126322
+        },
+        {
+          "epoch" : 13,
+          "trainLoss" : 0.3439044031126263,
+          "valAccuracy" : 0.9,
+          "valLoss" : 0.4054125763225308
+        },
+        {
+          "epoch" : 14,
+          "trainLoss" : 0.32651042752626364,
+          "valAccuracy" : 0.9022222222222223,
+          "valLoss" : 0.39402381770706346
+        },
+        {
+          "epoch" : 15,
+          "trainLoss" : 0.31156897548093687,
+          "valAccuracy" : 0.9022222222222223,
+          "valLoss" : 0.38285882596065146
+        },
+        {
+          "epoch" : 16,
+          "trainLoss" : 0.29833780306141855,
+          "valAccuracy" : 0.9027777777777778,
+          "valLoss" : 0.37432995614889364
+        },
+        {
+          "epoch" : 17,
+          "trainLoss" : 0.2866565612253157,
+          "valAccuracy" : 0.8988888888888888,
+          "valLoss" : 0.36740959269302026
+        },
+        {
+          "epoch" : 18,
+          "trainLoss" : 0.2761799005194009,
+          "valAccuracy" : 0.9005555555555556,
+          "valLoss" : 0.361085287815121
+        },
+        {
+          "epoch" : 19,
+          "trainLoss" : 0.2663925118989174,
+          "valAccuracy" : 0.9011111111111111,
+          "valLoss" : 0.35507970823858603
+        },
+        {
+          "epoch" : 20,
+          "trainLoss" : 0.2576516912627589,
+          "valAccuracy" : 0.9066666666666666,
+          "valLoss" : 0.3498669156979214
+        },
+        {
+          "epoch" : 21,
+          "trainLoss" : 0.24969890782442922,
+          "valAccuracy" : 0.9038888888888889,
+          "valLoss" : 0.34549714506591156
+        },
+        {
+          "epoch" : 22,
+          "trainLoss" : 0.242194288001689,
+          "valAccuracy" : 0.9011111111111111,
+          "valLoss" : 0.3419892998745777
+        },
+        {
+          "epoch" : 23,
+          "trainLoss" : 0.23504709106476698,
+          "valAccuracy" : 0.9044444444444445,
+          "valLoss" : 0.33815466901828106
+        },
+        {
+          "epoch" : 24,
+          "trainLoss" : 0.22855989179202976,
+          "valAccuracy" : 0.9055555555555556,
+          "valLoss" : 0.3355913422569229
+        },
+        {
+          "epoch" : 25,
+          "trainLoss" : 0.22262823476245824,
+          "valAccuracy" : 0.905,
+          "valLoss" : 0.3320708044750687
+        },
+        {
+          "epoch" : 26,
+          "trainLoss" : 0.21671265073987758,
+          "valAccuracy" : 0.9027777777777778,
+          "valLoss" : 0.3301960293034218
+        },
+        {
+          "epoch" : 27,
+          "trainLoss" : 0.21150571249829128,
+          "valAccuracy" : 0.905,
+          "valLoss" : 0.3278082962034045
+        },
+        {
+          "epoch" : 28,
+          "trainLoss" : 0.20630495109562988,
+          "valAccuracy" : 0.9038888888888889,
+          "valLoss" : 0.3260851484414423
+        },
+        {
+          "epoch" : 29,
+          "trainLoss" : 0.20172701029122503,
+          "valAccuracy" : 0.9033333333333333,
+          "valLoss" : 0.32416321016497907
+        },
+        {
+          "epoch" : 30,
+          "trainLoss" : 0.19694849336123366,
+          "valAccuracy" : 0.9066666666666666,
+          "valLoss" : 0.32230422077992343
+        },
+        {
+          "epoch" : 31,
+          "trainLoss" : 0.19278510428587245,
+          "valAccuracy" : 0.9038888888888889,
+          "valLoss" : 0.32055343371880746
+        },
+        {
+          "epoch" : 32,
+          "trainLoss" : 0.1884604691770432,
+          "valAccuracy" : 0.9061111111111111,
+          "valLoss" : 0.31925032707333
+        },
+        {
+          "epoch" : 33,
+          "trainLoss" : 0.18450269427838542,
+          "valAccuracy" : 0.9055555555555556,
+          "valLoss" : 0.3177316794550259
+        },
+        {
+          "epoch" : 34,
+          "trainLoss" : 0.18098645769512797,
+          "valAccuracy" : 0.9072222222222223,
+          "valLoss" : 0.31665038777623344
+        },
+        {
+          "epoch" : 35,
+          "trainLoss" : 0.17722997658355288,
+          "valAccuracy" : 0.9038888888888889,
+          "valLoss" : 0.31630997056408044
+        },
+        {
+          "epoch" : 36,
+          "trainLoss" : 0.17398360194371676,
+          "valAccuracy" : 0.9061111111111111,
+          "valLoss" : 0.31476682024019687
+        },
+        {
+          "epoch" : 37,
+          "trainLoss" : 0.17056833393925996,
+          "valAccuracy" : 0.9077777777777778,
+          "valLoss" : 0.3140796210492527
+        },
+        {
+          "epoch" : 38,
+          "trainLoss" : 0.16713477127801446,
+          "valAccuracy" : 0.9066666666666666,
+          "valLoss" : 0.3134274961154549
+        },
+        {
+          "epoch" : 39,
+          "trainLoss" : 0.1643372099093596,
+          "valAccuracy" : 0.9055555555555556,
+          "valLoss" : 0.3119578169799079
+        },
+        {
+          "epoch" : 40,
+          "trainLoss" : 0.16133851251510786,
+          "valAccuracy" : 0.905,
+          "valLoss" : 0.3118466669612648
+        },
+        {
+          "epoch" : 41,
+          "trainLoss" : 0.158633342958214,
+          "valAccuracy" : 0.9044444444444445,
+          "valLoss" : 0.3115341077792344
+        },
+        {
+          "epoch" : 42,
+          "trainLoss" : 0.15617637421062647,
+          "valAccuracy" : 0.9061111111111111,
+          "valLoss" : 0.3107708891837549
+        },
+        {
+          "epoch" : 43,
+          "trainLoss" : 0.15321903705090803,
+          "valAccuracy" : 0.9072222222222223,
+          "valLoss" : 0.3093170772629512
+        },
+        {
+          "epoch" : 44,
+          "trainLoss" : 0.1508856707129969,
+          "valAccuracy" : 0.9066666666666666,
+          "valLoss" : 0.3099821100835555
+        },
+        {
+          "epoch" : 45,
+          "trainLoss" : 0.1484408256748646,
+          "valAccuracy" : 0.9055555555555556,
+          "valLoss" : 0.30917393986574987
+        },
+        {
+          "epoch" : 46,
+          "trainLoss" : 0.1459135206804084,
+          "valAccuracy" : 0.9061111111111111,
+          "valLoss" : 0.3091548531593614
+        },
+        {
+          "epoch" : 47,
+          "trainLoss" : 0.14395699893955,
+          "valAccuracy" : 0.9072222222222223,
+          "valLoss" : 0.3078726305927393
+        },
+        {
+          "epoch" : 48,
+          "trainLoss" : 0.14182271136471444,
+          "valAccuracy" : 0.9061111111111111,
+          "valLoss" : 0.3082655390418999
+        },
+        {
+          "epoch" : 49,
+          "trainLoss" : 0.1398282548119181,
+          "valAccuracy" : 0.9072222222222223,
+          "valLoss" : 0.30757314598789715
+        },
+        {
+          "epoch" : 50,
+          "trainLoss" : 0.1380121951081957,
+          "valAccuracy" : 0.905,
+          "valLoss" : 0.30795557592046596
+        },
+        {
+          "epoch" : 51,
+          "trainLoss" : 0.13593764043941106,
+          "valAccuracy" : 0.905,
+          "valLoss" : 0.3074279272611041
+        },
+        {
+          "epoch" : 52,
+          "trainLoss" : 0.1340080872353858,
+          "valAccuracy" : 0.9077777777777778,
+          "valLoss" : 0.3072453086656013
+        },
+        {
+          "epoch" : 53,
+          "trainLoss" : 0.13205997732921199,
+          "valAccuracy" : 0.9044444444444445,
+          "valLoss" : 0.3072211900137046
+        },
+        {
+          "epoch" : 54,
+          "trainLoss" : 0.13042092798934787,
+          "valAccuracy" : 0.9088888888888889,
+          "valLoss" : 0.307464736738977
+        },
+        {
+          "epoch" : 55,
+          "trainLoss" : 0.128922170242243,
+          "valAccuracy" : 0.9072222222222223,
+          "valLoss" : 0.3067958213958946
+        },
+        {
+          "epoch" : 56,
+          "trainLoss" : 0.12699224967150394,
+          "valAccuracy" : 0.9055555555555556,
+          "valLoss" : 0.30702400654696815
+        },
+        {
+          "epoch" : 57,
+          "trainLoss" : 0.125550346012471,
+          "valAccuracy" : 0.9077777777777778,
+          "valLoss" : 0.30669660936154286
+        },
+        {
+          "epoch" : 58,
+          "trainLoss" : 0.12405591350368163,
+          "valAccuracy" : 0.9077777777777778,
+          "valLoss" : 0.3059045387025411
+        },
+        {
+          "epoch" : 59,
+          "trainLoss" : 0.12248751619943868,
+          "valAccuracy" : 0.9066666666666666,
+          "valLoss" : 0.3065613445463256
+        },
+        {
+          "epoch" : 60,
+          "trainLoss" : 0.12106198774892304,
+          "valAccuracy" : 0.9061111111111111,
+          "valLoss" : 0.30672841655424515
+        },
+        {
+          "epoch" : 61,
+          "trainLoss" : 0.11985772349303211,
+          "valAccuracy" : 0.9066666666666666,
+          "valLoss" : 0.3068140703823273
+        },
+        {
+          "epoch" : 62,
+          "trainLoss" : 0.11834962521390865,
+          "valAccuracy" : 0.905,
+          "valLoss" : 0.3064072477020766
+        },
+        {
+          "epoch" : 63,
+          "trainLoss" : 0.11707028355050879,
+          "valAccuracy" : 0.9066666666666666,
+          "valLoss" : 0.3065265854923103
+        },
+        {
+          "epoch" : 64,
+          "trainLoss" : 0.11567573680799281,
+          "valAccuracy" : 0.9044444444444445,
+          "valLoss" : 0.30673770392843663
+        },
+        {
+          "epoch" : 65,
+          "trainLoss" : 0.11441416117536642,
+          "valAccuracy" : 0.9083333333333333,
+          "valLoss" : 0.3062607197719741
+        },
+        {
+          "epoch" : 66,
+          "trainLoss" : 0.11338344169636845,
+          "valAccuracy" : 0.905,
+          "valLoss" : 0.30679564682112564
+        }
+      ],
+      "seconds" : 21.647186756134033,
+      "stage" : "decay",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.3059045392202439,
+        "n" : 1800,
+        "top1" : 0.9077777777777778,
+        "top5" : 0.9938888888888889
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.01
+      },
+      "epochs" : 95,
+      "seconds" : 32.30220317840576,
+      "stage" : "decay",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.39692519848828456,
+        "n" : 1800,
+        "top1" : 0.9066666666666666,
+        "top5" : 0.9938888888888889
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.001
+      },
+      "epochs" : 36,
+      "seconds" : 27.760124683380127,
+      "stage" : "views",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop",
+        "crop-flip"
+      ],
+      "val" : {
+        "logLoss" : 0.3064142346944572,
+        "n" : 1800,
+        "top1" : 0.9066666666666666,
+        "top5" : 0.9938888888888889
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.001
+      },
+      "epochs" : 19,
+      "seconds" : 35.10088229179382,
+      "stage" : "views",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop",
+        "crop-flip",
+        "squash",
+        "squash-flip"
+      ],
+      "val" : {
+        "logLoss" : 0.30412010645626375,
+        "n" : 1800,
+        "top1" : 0.9072222222222223,
+        "top5" : 0.9938888888888889
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0.2,
+        "hidden" : 512,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.001
+      },
+      "epochs" : 22,
+      "seconds" : 72.84118974208832,
+      "stage" : "hidden",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.3112922318445832,
+        "n" : 1800,
+        "top1" : 0.9022222222222223,
+        "top5" : 0.9933333333333333
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0.5,
+        "hidden" : 512,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.001
+      },
+      "epochs" : 22,
+      "seconds" : 74.0564352273941,
+      "stage" : "hidden",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.30714150032683335,
+        "n" : 1800,
+        "top1" : 0.9,
+        "top5" : 0.9933333333333333
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0.5,
+        "hidden" : 1024,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.001
+      },
+      "epochs" : 21,
+      "seconds" : 134.93513298034668,
+      "stage" : "hidden",
+      "testViews" : [
+        "crop"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.30537829893936547,
+        "n" : 1800,
+        "top1" : 0.9061111111111111,
+        "top5" : 0.9922222222222222
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.001
+      },
+      "epochs" : 58,
+      "seconds" : 0,
+      "stage" : "test-views",
+      "testViews" : [
+        "crop",
+        "crop-flip"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.3009579972179477,
+        "n" : 1800,
+        "top1" : 0.9072222222222223,
+        "top5" : 0.9933333333333333
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.001
+      },
+      "epochs" : 58,
+      "seconds" : 0,
+      "stage" : "test-views",
+      "testViews" : [
+        "crop",
+        "squash"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.3211441382297664,
+        "n" : 1800,
+        "top1" : 0.9055555555555556,
+        "top5" : 0.9938888888888889
+      }
+    },
+    {
+      "config" : {
+        "batch" : 128,
+        "dropout" : 0,
+        "hidden" : 0,
+        "learningRate" : 0.0001,
+        "maxEpochs" : 200,
+        "norm" : "none",
+        "patience" : 8,
+        "seed" : 7,
+        "weightDecay" : 0.001
+      },
+      "epochs" : 58,
+      "seconds" : 0,
+      "stage" : "test-views",
+      "testViews" : [
+        "crop",
+        "crop-flip",
+        "squash",
+        "squash-flip"
+      ],
+      "trainViews" : [
+        "crop"
+      ],
+      "val" : {
+        "logLoss" : 0.3174475747933898,
+        "n" : 1800,
+        "top1" : 0.9072222222222223,
+        "top5" : 0.9933333333333333
+      }
+    }
+  ],
+  "seed" : 42,
+  "valPerClass" : 15,
+  "valPhotos" : 1800
+}
