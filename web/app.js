@@ -124,18 +124,24 @@ function loadScript(src) {
 async function fetchWithProgress(url, label) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
+  // content-length is the size on the wire; a gzipped response (GitHub Pages compresses .onnx)
+  // decodes to more bytes than that, so collect chunks rather than preallocating.
   const total = Number(res.headers.get("content-length")) || 0;
   if (!res.body || !total) return new Uint8Array(await res.arrayBuffer());
   const reader = res.body.getReader();
-  const out = new Uint8Array(total);
+  const chunks = [];
   let got = 0;
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
-    out.set(value, got); got += value.length;
-    setStatus("loading", `${label}: ${Math.round((got / total) * 100)}% of ${(total / 1048576).toFixed(0)} MB`);
+    chunks.push(value); got += value.length;
+    const pct = Math.min(99, Math.round((got / total) * 100));
+    setStatus("loading", `${label}: ${pct}% of ${(total / 1048576).toFixed(0)} MB`);
   }
-  return out.subarray(0, got);
+  const out = new Uint8Array(got);
+  let at = 0;
+  for (const c of chunks) { out.set(c, at); at += c.length; }
+  return out;
 }
 
 function loadJudge() {
