@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lineage: dog breed judge</title>
+<meta name="description" content="Drop a dog photo into the ring and a breed classifier trained in Swift awards rosettes to its top guesses among 120 breeds. Runs entirely in your browser.">
+<meta property="og:title" content="Lineage: dog breed judge">
+<meta property="og:description" content="{{top1}} top-1 and {{top5}} top-5 on the {{test_n}} held-out Stanford Dogs test photos. A head trained in Swift on a pretrained MobileNetV4, running in the page.">
+<meta property="og:image" content="https://evannwilsonn.github.io/lineage/thumbnail.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light dark">
+<link rel="preload" href="fonts/Gloock-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/InstrumentSans-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<script>
+  // theme before first paint: a saved choice, else the system setting
+  try { const t = localStorage.getItem("lineage-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<style>
+@font-face { font-family: "Gloock"; src: url("fonts/Gloock-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Instrument Sans"; src: url("fonts/InstrumentSans-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Instrument Sans"; src: url("fonts/InstrumentSans-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Instrument Sans"; src: url("fonts/InstrumentSans-Italic.ttf") format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Big Shoulders"; src: url("fonts/BigShoulders-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Big Shoulders"; src: url("fonts/BigShoulders-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+
+/* ---------- tokens. light: the show catalogue, printed on cool ivory stock ---------- */
+:root {
+  --paper: #f2f3ec;
+  --paper-2: #e9ebe2;
+  --card: #f9f9f4;
+  --ink: #1f4d3a;
+  --ink-2: #446555;
+  --ink-3: #6d877a;
+  --rule: #c8d1c6;
+  --rule-2: #dde3d9;
+  --felt: #2c6346;
+  --felt-2: #24543b;
+  --felt-edge: #1b4330;
+  --felt-ink: #f3f5ec;
+  --felt-ink-2: #c9dccd;
+  --chalk: rgba(246, 247, 238, .92);
+  --spot: rgba(255, 255, 255, 0);
+  --focus: #1f4fa3;
+  --shadow: 0 1px 0 rgba(31, 77, 58, .08), 0 10px 28px -14px rgba(20, 50, 36, .35);
+  /* rosette colours: the only bright notes */
+  --blue: #1e4fa0;  --blue-l: #3f72c4;  --blue-d: #153a78;
+  --red: #b0232e;   --red-l: #cf424b;   --red-d: #83171f;
+  --gold: #e0b021;  --gold-l: #f3cd4f;  --gold-d: #b48810;
+  --button: #f7f5ec; --button-hi: #ffffff; --button-lo: #e3e0d2;
+  --white-rib: #fbfbf6; --white-rib-2: #ebece3;
+  --glow: none;
+  --noise-o: .07;
+}
+:root[data-theme="dark"] { color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f2a20; --paper-2: #13321f; --card: #143427;
+    --ink: #edf0e6; --ink-2: #b9cbbf; --ink-3: #8aa596;
+    --rule: rgba(237, 240, 230, .16); --rule-2: rgba(237, 240, 230, .09);
+    --felt: #1d4a35; --felt-2: #173d2b; --felt-edge: #0b2117; --felt-ink: #f3f5ec; --felt-ink-2: #c3d6c9;
+    --chalk: rgba(250, 250, 240, .95); --spot: rgba(255, 246, 214, .17); --focus: #f3cd4f;
+    --shadow: 0 1px 0 rgba(0, 0, 0, .25), 0 18px 40px -18px rgba(0, 0, 0, .7);
+    --blue: #2b62c6; --blue-l: #5487e0; --blue-d: #1b4594;
+    --red: #cc3340; --red-l: #e5585f; --red-d: #9a1f2a;
+    --gold: #efc23a; --gold-l: #ffdc6a; --gold-d: #c49915;
+    --button: #f4f1e4; --button-hi: #ffffff; --button-lo: #d9d4bf;
+    --white-rib: #f1f2e9; --white-rib-2: #d8dccf;
+    --glow: drop-shadow(0 0 16px rgba(255, 236, 170, .12));
+    --noise-o: .09;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f2a20; --paper-2: #13321f; --card: #143427;
+  --ink: #edf0e6; --ink-2: #b9cbbf; --ink-3: #8aa596;
+  --rule: rgba(237, 240, 230, .16); --rule-2: rgba(237, 240, 230, .09);
+  --felt: #1d4a35; --felt-2: #173d2b; --felt-edge: #0b2117; --felt-ink: #f3f5ec; --felt-ink-2: #c3d6c9;
+  --chalk: rgba(250, 250, 240, .95); --spot: rgba(255, 246, 214, .17); --focus: #f3cd4f;
+  --shadow: 0 1px 0 rgba(0, 0, 0, .25), 0 18px 40px -18px rgba(0, 0, 0, .7);
+  --blue: #2b62c6; --blue-l: #5487e0; --blue-d: #1b4594;
+  --red: #cc3340; --red-l: #e5585f; --red-d: #9a1f2a;
+  --gold: #efc23a; --gold-l: #ffdc6a; --gold-d: #c49915;
+  --button: #f4f1e4; --button-hi: #ffffff; --button-lo: #d9d4bf;
+  --white-rib: #f1f2e9; --white-rib-2: #d8dccf;
+  --glow: drop-shadow(0 0 16px rgba(255, 236, 170, .12));
+  --noise-o: .09;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 16px/1.55 "Instrument Sans", system-ui, sans-serif;
+  overflow-x: hidden; position: relative;
+}
+/* paper tooth (light) and felt nap (dark): one noise tile, opacity per theme */
+body::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: var(--noise-o);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.2 0 0 0 0 0.15 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+h1, h2, h3, .serif { font-family: "Gloock", Georgia, serif; font-weight: 400; letter-spacing: .005em; }
+.smallcaps { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--ink-2); }
+.num { font-family: "Big Shoulders", "Instrument Sans", sans-serif; font-weight: 700; letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+
+/* ---------- masthead: the catalogue cover ---------- */
+.mast { padding: 26px 0 18px; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; align-items: end; }
+.mast-top { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 14px; border-bottom: 3px double var(--rule); }
+.mast-top .smallcaps span + span::before { content: "·"; margin: 0 .7em; color: var(--ink-3); }
+.theme {
+  font: 700 12px/1 "Instrument Sans", sans-serif; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink); background: var(--card); border: 1px solid var(--rule); border-radius: 999px;
+  padding: 9px 14px 9px 10px; display: inline-flex; gap: 8px; align-items: center; cursor: pointer; white-space: nowrap;
+}
+.theme:hover { border-color: var(--ink-3); }
+.theme .lamp { width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff 0 18%, var(--gold) 45%, var(--gold-d)); box-shadow: 0 0 0 2px var(--card), 0 0 0 3px var(--rule); }
+h1 { font-size: clamp(64px, 11vw, 128px); line-height: .9; margin: 22px 0 6px; letter-spacing: -.01em; }
+h1 .dot { color: var(--blue); }
+.lede { max-width: 620px; margin: 6px 0 4px; font-size: 18px; color: var(--ink-2); }
+.lede strong { color: var(--ink); font-weight: 700; }
+.mast-score { text-align: right; padding-bottom: 6px; }
+.mast-score .num { font-size: 44px; line-height: 1; display: block; color: var(--ink); }
+.mast-score small { display: block; max-width: 230px; margin-left: auto; color: var(--ink-2); font-size: 13px; line-height: 1.4; }
+
+/* ---------- the ring ---------- */
+.show { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; padding: 38px 0 12px; align-items: start; }
+.ring-col { position: relative; }
+.ring {
+  position: relative; aspect-ratio: 4 / 3; border-radius: 50%;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 46%, var(--spot), transparent 72%),
+    radial-gradient(ellipse at 50% 40%, var(--felt) 0 55%, var(--felt-2) 80%, var(--felt-edge) 100%);
+  box-shadow: inset 0 0 0 10px var(--felt-edge), inset 0 0 50px rgba(0, 0, 0, .35), var(--shadow);
+  display: grid; place-items: center; overflow: hidden; isolation: isolate;
+}
+.ring::after { /* the felt's nap */
+  content: ""; position: absolute; inset: 0; border-radius: 50%; z-index: -1; opacity: .22; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23f)'/%3E%3C/svg%3E");
+}
+.chalk { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.chalk ellipse { fill: none; stroke: var(--chalk); }
+.ring.drag .chalk ellipse.line { stroke-width: 5; stroke-dasharray: none; }
+.exhibit {
+  position: relative; z-index: 1; margin: 0; width: 62%; display: grid; place-items: center;
+  transform: rotate(-1.2deg);
+}
+.exhibit img {
+  display: block; max-width: 100%; max-height: 52vh; width: auto; height: auto; aspect-ratio: auto;
+  border: 7px solid #fbfbf5; border-bottom-width: 22px; border-radius: 2px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, .12), 0 16px 26px -12px rgba(0, 0, 0, .6);
+  background: #fbfbf5;
+}
+.exhibit figcaption {
+  position: absolute; left: 0; right: 0; bottom: 3px; text-align: center; font-size: 11px; letter-spacing: .04em;
+  color: #4f5d55; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 10px;
+}
+.drop-hint {
+  position: absolute; z-index: 2; bottom: 9%; left: 50%; transform: translateX(-50%);
+  font: 700 11px/1 "Instrument Sans", sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--felt-ink-2);
+  white-space: nowrap; pointer-events: none;
+}
+.ring.drag .drop-hint { color: var(--felt-ink); }
+.ring.busy .exhibit img { filter: saturate(.75) brightness(.9); }
+
+/* the exhibitor's armband, pinned over the ring's edge */
+.armband {
+  position: absolute; z-index: 3; left: -6px; top: 6%; transform: rotate(-5deg);
+  width: 132px; padding: 9px 12px 8px; background: #fbfbf6; color: #16231c;
+  border-radius: 3px; box-shadow: 0 1px 0 rgba(0, 0, 0, .1), 0 10px 18px -8px rgba(0, 0, 0, .45);
+  text-align: center;
+}
+.armband::before, .armband::after { /* the safety pin */
+  content: ""; position: absolute; top: -7px; height: 12px; border: 1.6px solid #9aa39d; border-bottom: none; border-radius: 6px 6px 0 0;
+}
+.armband::before { left: 22px; width: 88px; }
+.armband::after { left: 104px; width: 10px; height: 8px; top: -5px; background: #c9cfca; border-radius: 3px; border: 1px solid #8a948e; }
+.armband .a-top { display: flex; justify-content: space-between; font: 700 9.5px/1 "Instrument Sans", sans-serif; letter-spacing: .16em; border-bottom: 1px solid #16231c; padding-bottom: 5px; }
+.armband .a-no { display: block; font: 700 54px/0.95 "Big Shoulders", sans-serif; letter-spacing: .01em; margin-top: 4px; }
+.armband .a-bot { display: block; font: 700 8.5px/1.1 "Instrument Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; border-top: 1px solid #16231c; padding-top: 5px; margin-top: 3px; }
+
+.entry { margin-top: 22px; display: grid; gap: 14px; }
+.entry-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn {
+  font: 700 14px/1 "Instrument Sans", sans-serif; letter-spacing: .02em; color: var(--paper); background: var(--ink);
+  border: 0; border-radius: 999px; padding: 13px 20px; cursor: pointer; display: inline-flex; gap: 9px; align-items: center;
+}
+.btn:hover { filter: brightness(1.12); }
+.btn svg { width: 16px; height: 16px; }
+.note { font-size: 13px; color: var(--ink-2); }
+.samples { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin: 0; padding: 0; }
+.sample {
+  display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border-radius: 999px;
+  border: 1px solid var(--rule); background: var(--card); color: var(--ink); cursor: pointer;
+  font: 400 13.5px/1 "Instrument Sans", sans-serif;
+}
+.samples { gap: 8px; }
+.sample img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block; }
+.sample:hover { border-color: var(--ink-3); }
+.sample[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.status { font-size: 13px; color: var(--ink-2); min-height: 1.5em; display: flex; gap: 8px; align-items: center; }
+.status .pip { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); flex: none; }
+.status[data-state="ready"] .pip { background: #3b9a62; }
+.status[data-state="loading"] .pip { background: var(--gold); }
+.status[data-state="error"] .pip { background: var(--red); }
+
+/* ---------- the awards ---------- */
+.awards h2 { font-size: 30px; margin: 4px 0 2px; line-height: 1.1; }
+.awards .judged { font-size: 13px; color: var(--ink-2); margin: 0 0 6px; }
+.rosettes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin: 4px 0 0 -10px; }
+.rosette { margin: 0; position: relative; filter: drop-shadow(0 6px 7px rgba(10, 30, 20, .28)) var(--glow); }
+.rosette:nth-child(1) { transform: rotate(-4deg); }
+.rosette:nth-child(2) { transform: rotate(3deg) translateY(10px); }
+.rosette:nth-child(3) { transform: rotate(-2deg) translateY(4px); }
+.rosette-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.rosette--1 { --base: var(--blue); --light: var(--blue-l); --dark: var(--blue-d); --edge: #f1e7c2; --tail-ink: #fbfaf2; --stitch: rgba(255,255,255,.7); }
+.rosette--2 { --base: var(--red); --light: var(--red-l); --dark: var(--red-d); --edge: #f1e7c2; --tail-ink: #fffaf3; --stitch: rgba(255,255,255,.7); }
+.rosette--3 { --base: var(--gold); --light: var(--gold-l); --dark: var(--gold-d); --edge: #fbf6e2; --tail-ink: #2e2405; --stitch: rgba(60,45,0,.5); }
+.rosette-place { font-family: "Gloock", serif; fill: var(--dark); }
+.rosette-arc { font: 700 7.2px "Instrument Sans", sans-serif; letter-spacing: 2.1px; fill: var(--dark); }
+.rosette-breed { font-family: "Gloock", serif; fill: var(--tail-ink); }
+.rosette-prob { font-family: "Big Shoulders", sans-serif; font-weight: 700; fill: var(--tail-ink); }
+.rosette-small { font: 700 7.4px "Instrument Sans", sans-serif; letter-spacing: 1.6px; fill: var(--tail-ink); opacity: .85; }
+.rosette .pin { fill: #c9b26a; stroke: #8f7a36; stroke-width: .8; }
+.rosette.pinned { animation: pin .52s cubic-bezier(.2, 1.5, .4, 1) both; }
+.rosette:nth-child(2).pinned { animation-delay: .09s; }
+.rosette:nth-child(3).pinned { animation-delay: .18s; }
+@keyframes pin { from { opacity: 0; translate: 0 -14px; scale: 1.08; } to { opacity: 1; translate: 0 0; scale: 1; } }
+
+.commended { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+.ribbon {
+  --notch: 14px;
+  position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: baseline;
+  padding: 11px calc(var(--notch) + 12px); color: #1e3a2d;
+  background: linear-gradient(180deg, var(--white-rib), var(--white-rib-2));
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--notch)) 50%, 100% 100%, 0 100%, var(--notch) 50%);
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .15));
+}
+.ribbon::before { content: ""; position: absolute; inset: 4px calc(var(--notch) + 2px); border-top: 1px dashed rgba(30, 58, 45, .35); border-bottom: 1px dashed rgba(30, 58, 45, .35); pointer-events: none; }
+.ribbon .rk { font: 700 10px/1 "Instrument Sans", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #48604f; }
+.ribbon .rb { font: 400 18px/1.2 "Gloock", serif; min-width: 0; overflow-wrap: anywhere; }
+.ribbon .rp { font: 700 18px/1 "Big Shoulders", sans-serif; font-variant-numeric: tabular-nums; }
+.ribbon:nth-child(2) { margin-left: 18px; }
+.verdict { margin: 16px 0 0; font-size: 14px; color: var(--ink-2); border-left: 3px solid var(--rule); padding: 2px 0 2px 12px; }
+
+/* ---------- results board ---------- */
+section.block { padding: 54px 0 10px; }
+.block-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; margin-bottom: 22px; flex-wrap: wrap; }
+.block-head h2 { font-size: clamp(30px, 4vw, 42px); margin: 0; line-height: 1.05; }
+.block-head p { margin: 0; color: var(--ink-2); max-width: 520px; font-size: 15px; }
+.board { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: start; }
+.big { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.big div { border-top: 3px solid var(--ink); padding-top: 10px; }
+.big .num { font-size: clamp(64px, 8vw, 96px); line-height: .9; display: block; }
+.big span.l { display: block; font-size: 14px; color: var(--ink-2); margin-top: 6px; }
+.listing { list-style: none; margin: 0; padding: 0; }
+.listing li { display: flex; align-items: baseline; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--rule-2); }
+.listing .what { flex: 0 1 auto; min-width: 0; }
+.listing .what small { display: block; color: var(--ink-3); font-size: 12.5px; line-height: 1.35; }
+.listing .lead { flex: 1 1 24px; border-bottom: 1.5px dotted var(--ink-3); transform: translateY(-5px); min-width: 16px; opacity: .7; }
+.listing .val { font: 700 22px/1 "Big Shoulders", sans-serif; font-variant-numeric: tabular-nums; }
+.listing li.mine .what { font-weight: 700; }
+.listing li.mine .val { color: var(--blue); }
+:root[data-theme="dark"] .listing li.mine .val { color: var(--blue-l); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .listing li.mine .val { color: var(--blue-l); } }
+.caveat { margin-top: 26px; padding: 16px 18px; background: var(--card); border: 1px solid var(--rule); border-radius: 4px; font-size: 14.5px; color: var(--ink-2); }
+.caveat strong { color: var(--ink); }
+
+/* ---------- lookalikes: the judge's notebook ---------- */
+.notebook {
+  position: relative; background: var(--card); border: 1px solid var(--rule); border-radius: 3px; box-shadow: var(--shadow);
+  padding: 18px 28px 10px 64px; transform: rotate(-.4deg);
+}
+.notebook::before { content: ""; position: absolute; top: 0; bottom: 0; left: 44px; border-left: 1.5px solid var(--rule); }
+.notebook .holes { position: absolute; left: 14px; top: 26px; bottom: 26px; display: flex; flex-direction: column; justify-content: space-between; }
+.notebook .holes i { width: 12px; height: 12px; border-radius: 50%; background: var(--paper); box-shadow: inset 0 1px 2px rgba(0, 0, 0, .3); }
+.pairs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; counter-reset: pair; }
+.pair { position: relative; padding: 14px 0 14px 34px; counter-increment: pair; break-inside: avoid; border-bottom: 1px solid var(--rule-2); }
+.pair::before { content: counter(pair) "."; position: absolute; left: 0; top: 19px; font: 700 17px/1 "Big Shoulders", sans-serif; color: var(--ink-3); }
+.pair-names { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 9px; font: 400 21px/1.25 "Gloock", serif; padding-right: 58px; }
+.pair-names .vs { font: italic 400 14px/1 "Instrument Sans", sans-serif; color: var(--ink-3); }
+.pair-tally { margin: 5px 0 0; font-size: 13.5px; color: var(--ink-2); padding-right: 58px; }
+.count { /* the judge's circled tally */
+  position: absolute; right: 2px; top: 12px; width: 46px; height: 46px; display: grid; place-items: center; text-align: center;
+  font: 700 21px/1 "Big Shoulders", sans-serif; color: var(--red); transform: rotate(-6deg);
+}
+.count::before { content: ""; position: absolute; inset: 0; border: 1.6px solid currentColor; border-radius: 52% 46% 55% 44%; opacity: .8; }
+.count small { display: block; font: 700 7.5px/1 "Instrument Sans", sans-serif; letter-spacing: .12em; text-transform: uppercase; margin-top: 2px; }
+
+/* ---------- breed index ---------- */
+.index-tools { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-bottom: 18px; }
+.search { position: relative; flex: 0 1 300px; }
+.search input {
+  width: 100%; font: 400 15px/1 "Instrument Sans", sans-serif; color: var(--ink); background: var(--card);
+  border: 1px solid var(--rule); border-radius: 999px; padding: 11px 16px;
+}
+.search input::placeholder { color: var(--ink-3); }
+.sort { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; background: var(--card); }
+.sort button { font: 700 12px/1 "Instrument Sans", sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); background: none; border: 0; padding: 11px 14px; cursor: pointer; }
+.sort button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); margin: 0; padding: 0; list-style: none; }
+.legend li { display: inline-flex; gap: 7px; align-items: center; }
+.mk { width: 10px; height: 16px; flex: none; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%); }
+.mk.b { background: var(--blue); } .mk.r { background: var(--red); } .mk.y { background: var(--gold); }
+.mk.w { background: var(--white-rib); box-shadow: inset 0 0 0 1px var(--ink-3); }
+.breeds { list-style: none; margin: 0; padding: 0; columns: 3; column-gap: 40px; }
+.breeds li { break-inside: avoid; display: flex; align-items: baseline; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--rule-2); }
+.breeds .mk { align-self: center; }
+.breeds .bn { font: 400 16.5px/1.2 "Gloock", serif; min-width: 0; }
+.breeds .bn small { font: 400 12px "Instrument Sans", sans-serif; color: var(--ink-3); margin-left: 4px; white-space: nowrap; }
+.breeds .lead { flex: 1 1 10px; border-bottom: 1.5px dotted var(--ink-3); opacity: .55; transform: translateY(-4px); min-width: 8px; }
+.breeds .ba { font: 700 17px/1 "Big Shoulders", sans-serif; font-variant-numeric: tabular-nums; }
+.breeds .conf { display: block; font-size: 12px; color: var(--ink-3); }
+.breeds li > div { min-width: 0; }
+.empty { color: var(--ink-2); font-style: italic; }
+
+/* ---------- rules of the show ---------- */
+.rules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; counter-reset: rule; list-style: none; margin: 0; padding: 0; }
+.rules li { counter-increment: rule; border-top: 1px solid var(--ink); padding-top: 12px; font-size: 14.5px; color: var(--ink-2); }
+.rules li::before { content: "Rule " counter(rule); display: block; font: 700 12px/1 "Instrument Sans", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+.rules h3 { font-size: 21px; margin: 0 0 6px; color: var(--ink); line-height: 1.2; }
+footer { margin-top: 60px; padding: 22px 0 40px; border-top: 3px double var(--rule); font-size: 13px; color: var(--ink-2); display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+footer p { margin: 0 0 8px; }
+
+@media (max-width: 980px) {
+  .show { grid-template-columns: 1fr; gap: 28px; }
+  .board { grid-template-columns: 1fr; gap: 28px; }
+  .breeds { columns: 2; }
+  .rules { grid-template-columns: 1fr 1fr; }
+  .awards { max-width: 620px; }
+}
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px; }
+  .mast { grid-template-columns: 1fr; }
+  .mast-score { text-align: left; }
+  .mast-score small { margin-left: 0; }
+  .mast-top .smallcaps span:nth-child(n+2) { display: none; }
+  .lede { font-size: 16.5px; }
+  .ring { aspect-ratio: 1 / 1.02; border-radius: 48%; }
+  .exhibit { width: 70%; }
+  .exhibit img { border-width: 5px; border-bottom-width: 18px; }
+  .armband { width: 100px; padding: 7px 9px 6px; left: -4px; top: 2%; }
+  .armband .a-no { font-size: 40px; }
+  .armband::before { left: 16px; width: 64px; } .armband::after { left: 78px; }
+  .rosettes { margin: 0 -6px; }
+  .pairs { grid-template-columns: 1fr; }
+  .notebook { padding: 24px 16px 14px 44px; transform: none; }
+  .notebook::before { left: 32px; } .notebook .holes { left: 9px; }
+  .breeds { columns: 1; }
+  .rules { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr; }
+  .ribbon { gap: 8px; grid-template-columns: 1fr auto; } .ribbon .rk { display: none; }
+  .drop-hint { display: none; } .ribbon:nth-child(2) { margin-left: 10px; }
+  .big .num { font-size: 66px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rosette.pinned { animation: none; }
+  * { scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="mast-top">
+      <p class="smallcaps" style="margin:0"><span>All-breed show</span><span>120 breeds</span><span>Judged in Swift</span></p>
+      <button class="theme" id="theme" type="button" aria-pressed="false"><span class="lamp" aria-hidden="true"></span><span id="theme-label">Evening ring</span></button>
+    </div>
+    <div>
+      <h1>Lineage<span class="dot">.</span></h1>
+      <p class="lede">Bring a dog photo into the ring. A classifier head I trained in Swift on 12,000 <strong>Stanford Dogs</strong> photos judges it against 120 breeds and pins rosettes on its top three guesses. Everything runs in this page; the photo never leaves your browser.</p>
+    </div>
+    <div class="mast-score">
+      <span class="num">{{top1}}</span>
+      <small>right first time on {{test_n}} test photos it never trained on ({{top5}} within its top five)</small>
+    </div>
+  </header>
+
+  <main>
+  <section class="show" aria-labelledby="ring-title">
+    <div class="ring-col">
+      <h2 id="ring-title" class="sr">The ring</h2>
+      <div class="armband" aria-hidden="true" title="The armband number is decorative">
+        <span class="a-top"><span>RING</span><span>7</span></span>
+        <span class="a-no" id="armband-no">0412</span>
+        <span class="a-bot">Exhibit</span>
+      </div>
+      <div class="ring" id="ring">
+        <svg class="chalk" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+          <defs><filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.2"/></filter></defs>
+          <ellipse class="line" cx="200" cy="150" rx="176" ry="128" stroke-width="2.6" stroke-dasharray="38 3 60 2 90 4" filter="url(#rough)" vector-effect="non-scaling-stroke"/>
+          <ellipse cx="200" cy="150" rx="168" ry="121" stroke-width="0.8" opacity="0.35" filter="url(#rough)" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <figure class="exhibit">
+          <img id="photo" src="" alt="" width="900" height="600">
+          <figcaption id="photo-credit"></figcaption>
+        </figure>
+        <p class="drop-hint" id="drop-hint">Drop a dog photo in the ring</p>
+      </div>
+      <div class="entry">
+        <div class="entry-row">
+          <label class="btn" for="file" id="file-label">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11V2.5M4.5 6 8 2.5 11.5 6M2.5 10.5v3h11v-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Enter your dog
+          </label>
+          <input type="file" id="file" accept="image/*" class="sr">
+          <span class="note">or drop or paste a photo. It stays on this device.</span>
+        </div>
+        <div>
+          <p class="smallcaps" style="margin:0 0 8px" id="samples-label">Or judge a sample exhibit (CC0 photos)</p>
+          <ul class="samples" id="samples" aria-labelledby="samples-label"></ul>
+        </div>
+        <p class="status" id="status" data-state="idle" role="status" aria-live="polite"><span class="pip" aria-hidden="true"></span><span id="status-text">Pre-judged in Swift. Pick a photo to judge live in your browser.</span></p>
+      </div>
+    </div>
+
+    <div class="awards" aria-labelledby="awards-title">
+      <p class="smallcaps" style="margin:0">Judge's awards</p>
+      <h2 id="awards-title">Best of breed</h2>
+      <p class="judged" id="judged">For this exhibit, the model's three most likely breeds.</p>
+      <div class="rosettes" id="rosettes"></div>
+      <ol class="commended" id="commended" start="4" aria-label="Highly commended, 4th and 5th"></ol>
+      <p class="verdict" id="verdict"></p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="board-title">
+    <div class="block-head">
+      <h2 id="board-title">How the judge did</h2>
+      <p>Scored once, at the end, on the official Stanford Dogs test split: {{test_n}} photos the head never saw while it was trained or tuned.</p>
+    </div>
+    <div class="board">
+      <div>
+        <div class="big">
+          <div><span class="num">{{top1}}</span><span class="l">top-1: the first rosette is the right breed</span></div>
+          <div><span class="num">{{top5}}</span><span class="l">top-5: the right breed is somewhere in the awards</span></div>
+        </div>
+        <div class="caveat">
+          <strong>A caveat about the judge's past.</strong> The backbone was pretrained on ImageNet, and Stanford Dogs was built from ImageNet's dog photos: all 120 breeds are ImageNet classes, and many of these test photos were probably in the backbone's training set. Without any training, ImageNet's own classifier already gets {{imagenet}} of them. So these scores say how well the head reads the backbone, not how well it would do on dog photos the backbone has never seen. Expect lower on your own photos.
+        </div>
+      </div>
+      <ul class="listing" aria-label="Test accuracy, top-1">
+        <li class="mine"><span class="what">This head, trained in Swift<small>{{head_kind}} on the backbone's 1280-number embedding</small></span><span class="lead"></span><span class="val">{{top1}}</span></li>
+        <li><span class="what">Course notebook<small>EfficientNetV2-B0 + a new Dense(120); its own report, with the test photos as its validation data</small></span><span class="lead"></span><span class="val">{{course}}</span></li>
+        <li><span class="what">ImageNet's classifier, no training<small>the backbone's original output, restricted to the 120 dog classes</small></span><span class="lead"></span><span class="val">{{imagenet}}</span></li>
+        <li><span class="what">Nearest training photos<small>{{knn_name}}, on the same embeddings</small></span><span class="lead"></span><span class="val">{{knn}}</span></li>
+        <li><span class="what">Nearest breed average<small>cosine similarity to each breed's mean embedding</small></span><span class="lead"></span><span class="val">{{centroid}}</span></li>
+        <li><span class="what">Always the same breed<small>what guessing gets with 120 breeds</small></span><span class="lead"></span><span class="val">{{majority}}</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="look-title">
+    <div class="block-head">
+      <h2 id="look-title">Lookalikes</h2>
+      <p>From the judge's notebook: the breed pairs it mixed up most on the test photos. The circled figure counts mix-ups in both directions.</p>
+    </div>
+    <div class="notebook">
+      <div class="holes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <ol class="pairs" id="pairs"></ol>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="index-title">
+    <div class="block-head">
+      <h2 id="index-title">Breed index</h2>
+      <p>Every breed in the show with the share of its test photos the judge got right first time. {{perfect}} breeds were perfect; the hardest was the {{worst_breed}} at {{worst_acc}}.</p>
+    </div>
+    <div class="index-tools">
+      <label class="search"><span class="sr">Find a breed</span><input id="find" type="search" placeholder="Find a breed" autocomplete="off"></label>
+      <div class="sort" role="group" aria-label="Sort breeds">
+        <button type="button" data-sort="az" aria-pressed="true">A to Z</button>
+        <button type="button" data-sort="best" aria-pressed="false">Best</button>
+        <button type="button" data-sort="worst" aria-pressed="false">Hardest</button>
+      </div>
+      <ul class="legend" aria-label="Ribbon markers">
+        <li><span class="mk b"></span>95% or more</li>
+        <li><span class="mk r"></span>85 to 95%</li>
+        <li><span class="mk y"></span>70 to 85%</li>
+        <li><span class="mk w"></span>under 70%</li>
+      </ul>
+    </div>
+    <ul class="breeds" id="breeds"></ul>
+  </section>
+
+  <section class="block" aria-labelledby="rules-title">
+    <div class="block-head">
+      <h2 id="rules-title">Rules of the show</h2>
+      <p>How a photo gets from your device to a rosette.</p>
+    </div>
+    <ol class="rules">
+      <li><h3>The photo is framed</h3>The page shrinks it in a canvas, then Swift code compiled to WebAssembly turns {{framing}} into the network's input. The same Swift prepared the training photos.</li>
+      <li><h3>The backbone looks</h3>A pretrained MobileNetV4 (timm, Apache 2.0) runs in ONNX Runtime Web and boils the photo down to 1,280 numbers. Training ran the same file from Swift through ONNX Runtime's C API.</li>
+      <li><h3>The head judges</h3>The head turns those numbers into 120 probabilities. It was trained from scratch in Swift: my own gradients, mini-batches, weight decay and early stopping. Its forward pass is the WebAssembly too.</li>
+      <li><h3>Rosettes are pinned</h3>The three most likely breeds get rosettes, the next two a highly commended ribbon. A photo of something that isn't one of the 120 breeds still gets awards, so take low numbers as the judge being unsure.</li>
+    </ol>
+  </section>
+  </main>
+
+  <footer>
+    <div>
+      <p><strong>Lineage</strong> by Evan Wilson. Code MIT, <a href="https://github.com/evannwilsonn/lineage">on GitHub</a>. Rebuilt from the dog vision project in Daniel Bourke's <a href="https://github.com/mrdbourke/zero-to-mastery-ml">Zero to Mastery Machine Learning</a> course.</p>
+      <p>Data: <a href="http://vision.stanford.edu/aditya86/ImageNetDogs/">Stanford Dogs</a> (Khosla, Jayadevaiah, Yao and Fei-Fei, 2011), built from ImageNet and used under its research terms; no dataset photos are shown or shipped here. Sample photos are CC0 from Flickr: <span id="sample-credits"></span>.</p>
+    </div>
+    <div>
+      <p>Backbone: <a href="https://huggingface.co/timm/mobilenetv4_conv_medium.e500_r256_in1k">MobileNetV4 conv medium</a> (timm, Apache 2.0), ONNX export by onnx-community. Runtime: ONNX Runtime Web 1.22 (MIT). Fonts: Gloock, Instrument Sans and Big Shoulders (SIL OFL).</p>
+    </div>
+  </footer>
+</div>
+<script id="data" type="application/json">{{data}}</script>
+<script src="rosette.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

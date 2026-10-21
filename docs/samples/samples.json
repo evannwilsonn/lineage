@@ -1,0 +1,52 @@
+[
+ {
+  "file": "samples/beagle.jpg",
+  "label": "Beagle",
+  "title": "Portrait of cute female beagle dog.",
+  "creator": "Artem Beliaikin",
+  "source": "https://www.flickr.com/photos/157635012@N07/44134376585",
+  "license": "CC0 1.0",
+  "width": 900,
+  "height": 600
+ },
+ {
+  "file": "samples/border-collie.jpg",
+  "label": "Border collie",
+  "title": "Border Collie Dog",
+  "creator": "Image Catalog",
+  "source": "https://www.flickr.com/photos/132795455@N08/21390927346",
+  "license": "CC0 1.0",
+  "width": 900,
+  "height": 599
+ },
+ {
+  "file": "samples/golden-retriever.jpg",
+  "label": "Golden retriever",
+  "title": "happy-afternoon-golden-retriever-yoko",
+  "creator": "pixellaphoto",
+  "source": "https://www.flickr.com/photos/137643065@N06/24326853815",
+  "license": "CC0 1.0",
+  "width": 900,
+  "height": 598
+ },
+ {
+  "file": "samples/corgi.jpg",
+  "label": "Pembroke corgi",
+  "title": "Pembroke Welsh Corgi.",
+  "creator": "Bernard Spragg",
+  "source": "https://www.flickr.com/photos/88123769@N02/9288847355",
+  "license": "CC0 1.0",
+  "width": 900,
+  "height": 552
+ },
+ {
+  "file": "samples/pug.jpg",
+  "label": "Pug",
+  "title": "Pug Puppy",
+  "creator": "Image Catalog",
+  "source": "https://www.flickr.com/photos/132795455@N08/23681617486",
+  "license": "CC0 1.0",
+  "width": 900,
+  "height": 600
+ }
+]

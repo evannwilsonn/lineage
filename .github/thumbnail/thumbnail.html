@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Lineage thumbnail</title>
+<!-- Rendered by scripts/thumbnail.py at 1200x627 (2x). The double-brace tokens come from results/holdout.json. -->
+<style>
+@font-face { font-family: "Gloock"; src: url("../../docs/fonts/Gloock-Regular.ttf"); }
+@font-face { font-family: "Instrument Sans"; src: url("../../docs/fonts/InstrumentSans-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Instrument Sans"; src: url("../../docs/fonts/InstrumentSans-Bold.ttf"); font-weight: 700; }
+@font-face { font-family: "Big Shoulders"; src: url("../../docs/fonts/BigShoulders-Bold.ttf"); font-weight: 700; }
+:root {
+  --blue: #2b62c6; --blue-l: #5487e0; --blue-d: #1b4594;
+  --red: #cc3340; --red-l: #e5585f; --red-d: #9a1f2a;
+  --gold: #efc23a; --gold-l: #ffdc6a; --gold-d: #c49915;
+  --button: #f4f1e4; --button-hi: #ffffff; --button-lo: #d9d4bf;
+}
+html, body { margin: 0; }
+body {
+  width: 1200px; height: 627px; overflow: hidden; position: relative; color: #edf0e6;
+  font-family: "Instrument Sans", sans-serif;
+  background:
+    radial-gradient(ellipse 520px 360px at 860px 300px, rgba(255, 246, 214, .2), transparent 70%),
+    radial-gradient(ellipse 900px 640px at 600px 300px, #1d4a35 0 40%, #133826 70%, #0a2117 100%);
+}
+body::before { /* felt nap */
+  content: ""; position: absolute; inset: 0; opacity: .25; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23f)'/%3E%3C/svg%3E");
+}
+.chalk { position: absolute; inset: 0; }
+.chalk ellipse { fill: none; stroke: rgba(250, 250, 240, .85); }
+.left { position: absolute; left: 70px; top: 92px; width: 460px; }
+.kicker { font: 700 14px/1 "Instrument Sans"; letter-spacing: .22em; text-transform: uppercase; color: #c3d6c9; }
+h1 { font: 400 124px/.9 "Gloock", serif; margin: 20px 0 18px; letter-spacing: -.01em; }
+h1 span { color: var(--gold); }
+.sub { font-size: 22px; line-height: 1.38; color: #d7e3da; max-width: 410px; margin: 0; }
+.sub b { color: #fff; }
+.armband {
+  position: absolute; left: 74px; bottom: 54px; width: 150px; padding: 10px 14px 9px; background: #fbfbf6; color: #16231c;
+  border-radius: 3px; transform: rotate(-4deg); box-shadow: 0 12px 20px -8px rgba(0, 0, 0, .55); text-align: center;
+}
+.armband::before { content: ""; position: absolute; top: -8px; left: 24px; width: 100px; height: 13px; border: 1.8px solid #9aa39d; border-bottom: none; border-radius: 7px 7px 0 0; }
+.a-top { display: flex; justify-content: space-between; font: 700 11px/1 "Instrument Sans"; letter-spacing: .16em; border-bottom: 1px solid #16231c; padding-bottom: 6px; }
+.a-no { display: block; font: 700 64px/.95 "Big Shoulders"; margin-top: 4px; }
+.a-bot { display: block; font: 700 10px/1.1 "Instrument Sans"; letter-spacing: .16em; border-top: 1px solid #16231c; padding-top: 6px; margin-top: 3px; }
+.swift { position: absolute; left: 270px; bottom: 66px; font: 700 15px/1.45 "Instrument Sans"; letter-spacing: .14em; text-transform: uppercase; color: #c3d6c9; }
+.swift b { color: #fff; font-size: 17px; }
+.rosette { position: absolute; filter: drop-shadow(0 12px 12px rgba(0, 0, 0, .45)) drop-shadow(0 0 18px rgba(255, 236, 170, .12)); }
+.rosette svg { width: 100%; height: auto; display: block; overflow: visible; }
+.rosette--1 { --base: var(--blue); --light: var(--blue-l); --dark: var(--blue-d); --edge: #f1e7c2; --tail-ink: #fbfaf2; --stitch: rgba(255,255,255,.7); }
+.rosette--2 { --base: var(--red); --light: var(--red-l); --dark: var(--red-d); --edge: #f1e7c2; --tail-ink: #fffaf3; --stitch: rgba(255,255,255,.7); }
+.rosette--3 { --base: var(--gold); --light: var(--gold-l); --dark: var(--gold-d); --edge: #fbf6e2; --tail-ink: #2e2405; --stitch: rgba(60,45,0,.5); }
+.rosette-place { font-family: "Gloock", serif; fill: var(--dark); }
+.rosette-arc { font: 700 7.2px "Instrument Sans"; letter-spacing: 2.1px; fill: var(--dark); }
+.rosette-breed { font-family: "Gloock", serif; fill: var(--tail-ink); }
+.rosette-prob { font-family: "Big Shoulders"; font-weight: 700; fill: var(--tail-ink); }
+.rosette-small { font: 700 7.4px "Instrument Sans"; letter-spacing: 1.6px; fill: var(--tail-ink); opacity: .85; }
+.pin { fill: #c9b26a; stroke: #8f7a36; stroke-width: .8; }
+#r2 { left: 540px; top: 118px; width: 205px; transform: rotate(-7deg); }
+#r3 { left: 1000px; top: 132px; width: 190px; transform: rotate(7deg); }
+#r1 { left: 752px; top: 34px; width: 248px; transform: rotate(-2deg); }
+</style>
+</head>
+<body>
+<svg class="chalk" width="1200" height="627" viewBox="0 0 1200 627">
+  <defs><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter></defs>
+  <ellipse cx="600" cy="320" rx="560" ry="282" stroke-width="3" stroke-dasharray="70 4 120 3 200 5" filter="url(#rough)"/>
+</svg>
+<div class="left">
+  <div class="kicker">All-breed show · Stanford Dogs</div>
+  <h1>Lineage<span>.</span></h1>
+  <p class="sub">A dog breed judge with a head <b>trained in Swift</b>, scored once on {{test_n}} held-out photos.</p>
+</div>
+<div class="armband"><span class="a-top"><span>RING</span><span>7</span></span><span class="a-no">120</span><span class="a-bot">BREEDS</span></div>
+<div class="swift"><b>Swift</b><br>ONNX Runtime · WebAssembly</div>
+<div class="rosette rosette--2" id="r2"></div>
+<div class="rosette rosette--3" id="r3"></div>
+<div class="rosette rosette--1" id="r1"></div>
+<script src="../../web/rosette.js"></script>
+<script>
+  document.getElementById("r1").innerHTML = rosetteSVG({ place: 1, breed: "Held-out top-1", value: "{{top1}}", valueLabel: "ACCURACY", uid: "a", caption: "LINEAGE · RING 7" });
+  document.getElementById("r2").innerHTML = rosetteSVG({ place: 2, breed: "Held-out top-5", value: "{{top5}}", valueLabel: "ACCURACY", uid: "b" });
+  document.getElementById("r3").innerHTML = rosetteSVG({ place: 3, breed: "Trained in Swift", value: "120", valueLabel: "BREEDS", uid: "c" });
+</script>
+</body>
+</html>
