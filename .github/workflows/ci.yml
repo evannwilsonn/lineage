@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # The official Swift image: the toolchain plus Embedded Swift's wasm32 standard library.
+    container: swift:6.3.3-noble
+    steps:
+      - uses: actions/checkout@v4
+      - run: apt-get update && apt-get install -y --no-install-recommends libjpeg-turbo8-dev curl ca-certificates
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      # ONNX Runtime's C library from Microsoft's GitHub release (the header is vendored in Sources/CORT).
+      - run: ./scripts/get-ort
+      # Unit tests (head maths, gradients, preparation, training), plus the backbone through ONNX Runtime
+      # on a sample photo compared with results/parity.json. (Training needs Stanford Dogs, not in the repo.)
+      - run: ./scripts/swift test
+      # Compile LineageCore to WebAssembly with Embedded Swift and check it against native Swift.
+      - run: ./scripts/build-wasm
+      - run: node scripts/check-wasm.mjs
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE" && (git diff --exit-code docs/lineage.wasm || echo "::warning::docs/lineage.wasm is out of date; run ./scripts/build-wasm")

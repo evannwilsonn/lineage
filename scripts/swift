@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# `swift build|test|run` with ONNX Runtime's library folder on the linker path and the rpath.
+# usage: scripts/swift build -c release   |   scripts/swift test
+set -e
+cd "$(dirname "$0")/.."
+ORT="$PWD/.ort/lib"
+cmd=$1; shift
+exec swift "$cmd" -Xlinker -L"$ORT" -Xlinker -rpath -Xlinker "$ORT" "$@"

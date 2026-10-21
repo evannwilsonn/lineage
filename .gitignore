@@ -1,0 +1,16 @@
+# Stanford Dogs: fetched by scripts/get-data, never committed
+data/images/
+data/embeddings/
+data/splits/
+# the full downloaded ImageNet model and the files derived from it (scripts/get-model)
+model/
+# ONNX Runtime's native library (scripts/get-ort)
+.ort/
+# Swift build output
+.build/
+*.o
+# screenshots and scratch
+shots/
+.github/thumbnail/.render.html
+__pycache__/
+node_modules/

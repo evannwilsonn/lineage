@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+# Downloads the pretrained MobileNetV4 (timm/mobilenetv4_conv_medium.e500_r256_in1k, Apache 2.0; ONNX export by
+# onnx-community on Hugging Face) and derives docs/backbone.onnx (embedding output, float16 storage) and
+# model/imagenet_dogs.* (ImageNet's own classifier rows for the 120 breeds, for a baseline).
+# Needs Python with the `onnx` package, and data/splits/train.txt (scripts/get-data).
+set -e
+cd "$(dirname "$0")/.."
+HF=https://huggingface.co/onnx-community/mobilenetv4_conv_medium.e500_r256_in1k/resolve/main
+mkdir -p model
+[ -f model/mnv4.onnx ] || curl -sSL "$HF/onnx/model.onnx" -o model/mnv4.onnx
+[ -f model/config.json ] || curl -sSL "$HF/config.json" -o model/config.json
+echo "f67257da6f91c00cd1d063a61a377718f004305c1299360a5c077e4c2b02b67a  model/mnv4.onnx" | sha256sum -c -
+python3 scripts/make_backbone.py model/mnv4.onnx model/backbone.onnx model/config.json data/splits/train.txt
+cp model/backbone.onnx docs/backbone.onnx
+sha256sum docs/backbone.onnx

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# Downloads Microsoft's ONNX Runtime C library (MIT) into .ort/. The header is vendored in Sources/CORT.
+set -e
+cd "$(dirname "$0")/.."
+V=1.22.0
+[ -f .ort/lib/libonnxruntime.so ] && exit 0
+mkdir -p .ort
+curl -sSL "https://github.com/microsoft/onnxruntime/releases/download/v$V/onnxruntime-linux-x64-$V.tgz" | tar xz --strip-components=1 -C .ort
+echo "ONNX Runtime $V in .ort/"

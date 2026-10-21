@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+# Compiles LineageCore (preparation + head) and wasm/Exports.swift with Embedded Swift to docs/lineage.wasm.
+# Needs a Swift 6.3 toolchain (its Embedded Swift standard library for wasm32 ships with it; no SDK needed).
+set -e
+cd "$(dirname "$0")/.."
+tmp=$(mktemp -d)
+swiftc -target wasm32-unknown-none-wasm -enable-experimental-feature Embedded -wmo -Osize -parse-as-library \
+  -module-name LineageCore Sources/LineageCore/*.swift wasm/Exports.swift -c -o "$tmp/lineage.o"
+wasm-ld --no-entry --strip-all --export=__heap_base --export-memory \
+  --export=lineage_prepare_scratch --export=lineage_prepare_rgba --export=lineage_head_floats --export=lineage_head \
+  "$tmp/lineage.o" -o docs/lineage.wasm
+rm -rf "$tmp"
+echo "docs/lineage.wasm: $(wc -c < docs/lineage.wasm) bytes"

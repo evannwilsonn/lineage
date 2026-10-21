@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+# Fetches Stanford Dogs (Khosla et al., 2011) into data/: the official train/test lists as plain text
+# and the 20,580 photos, shrunk on the way in (the 750 MB images.tar is streamed, never stored).
+# Needs curl and Python 3 with Pillow and SciPy (for the lists' .mat files).
+set -e
+cd "$(dirname "$0")/.."
+BASE=http://vision.stanford.edu/aditya86/ImageNetDogs
+mkdir -p data/splits
+tmp=$(mktemp -d)
+curl -sSL "$BASE/lists.tar" -o "$tmp/lists.tar"
+tar xf "$tmp/lists.tar" -C "$tmp"
+python3 -I - "$tmp" data/splits <<'PY'
+import sys, scipy.io
+src, dst = sys.argv[1], sys.argv[2]
+for name in ("train", "test"):
+    m = scipy.io.loadmat(f"{src}/{name}_list.mat")
+    files = [str(x[0][0]) for x in m["file_list"]]
+    open(f"{dst}/{name}.txt", "w").write("\n".join(files) + "\n")
+    print(name, len(files), "files")
+PY
+rm -rf "$tmp"
+if [ ! -d data/images ]; then
+  curl -sSL "$BASE/images.tar" | python3 -I scripts/prepare_images.py data/images
+fi
